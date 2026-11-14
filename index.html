@@ -1,0 +1,2527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMA UTME 2027 — Full UTME Mock & Subject CBT Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #0f172a;
+            border-radius: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .calc-btn {
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- TOP NAVIGATION BAR                         -->
+    <!-- ========================================== -->
+    <header class="bg-slate-900/95 backdrop-blur-md border-b border-slate-800 sticky top-0 z-30">
+        <div class="max-w-[92rem] mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <!-- Brand Identity -->
+            <div class="flex items-center gap-3">
+                <div id="navIconBg" class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-800 flex items-center justify-center shadow-lg">
+                    <i id="navIcon" class="fa-solid fa-graduation-cap text-white text-lg"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-extrabold tracking-tight text-white text-base sm:text-lg">SUCCESS MINERS ACADEMY</span>
+                        <span id="navBadge" class="hidden sm:inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">UTME 2027</span>
+                    </div>
+                    <p id="headerSubjectSubtitle" class="text-xs text-slate-400">Week 1 CBT Portal</p>
+                </div>
+            </div>
+
+            <!-- Right Controls: Leaderboard, WhatsApp Links, Unlock Status, Calculator & Live Timer -->
+            <div class="flex items-center flex-wrap gap-2">
+                <!-- Live Leaderboard Button -->
+                <button type="button" id="topNavLeaderboardBtn" class="px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 text-xs font-extrabold flex items-center gap-1.5 transition shadow">
+                    <i class="fa-solid fa-trophy text-amber-400"></i>
+                    <span>Leaderboard</span>
+                </button>
+
+                <!-- WhatsApp Group & Channel Quick Pills -->
+                <div id="topNavCommunityLinks" class="flex items-center gap-2">
+                    <a id="navWhatsappGroupLink" href="https://chat.whatsapp.com/B8vMlgaPDsR0XApkbkdsqW?s=cl&p=a&iam=2" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition shadow">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span class="hidden sm:inline">Join Group</span>
+                    </a>
+                    <a id="navWhatsappChannelLink" href="https://whatsapp.com/channel/0029VbEOxym3QxS1jjaYzJ1X" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-teal-500/40 text-teal-300 text-xs font-bold flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-bullhorn text-xs"></i>
+                        <span class="hidden sm:inline">Follow Channel</span>
+                    </a>
+                </div>
+
+                <!-- Unlock Status Badge -->
+                <div id="mockStatusBadge" class="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-300 font-semibold">
+                    <i class="fa-solid fa-lock" id="mockStatusIcon"></i>
+                    <span id="mockStatusText">Single Subjects Locked</span>
+                </div>
+
+                <!-- Top Bar Calculator Button (Visible during active quiz) -->
+                <button type="button" id="topNavCalculatorBtn" class="hidden items-center gap-2 px-3.5 py-1.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-xs font-extrabold shadow-lg shadow-violet-900/30 transition">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>Calculator</span>
+                </button>
+
+                <!-- Timer Box (Visible during quiz) -->
+                <div id="timerContainer" class="hidden items-center gap-2.5 bg-slate-950 border border-slate-700 px-3.5 py-1.5 rounded-xl shadow-inner">
+                    <i class="fa-regular fa-clock text-emerald-400 text-sm" id="clockIcon"></i>
+                    <span class="text-xs uppercase font-semibold text-slate-400 hidden sm:inline">Time Left:</span>
+                    <span id="timerDisplay" class="font-mono text-base sm:text-lg font-extrabold text-emerald-400 tracking-wider">02:00:00</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- MAIN CONTENT CONTAINER                     -->
+    <!-- ========================================== -->
+    <main class="flex-1 max-w-[92rem] w-full mx-auto px-4 sm:px-6 py-6 flex flex-col">
+
+        <!-- ========================================== -->
+        <!-- 1. START / REGISTRATION SCREEN             -->
+        <!-- ========================================== -->
+        <section id="startScreen" class="flex-1 flex items-center justify-center py-2">
+            <div class="w-full max-w-5xl bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-8 shadow-2xl">
+                
+                <!-- SMA WhatsApp & Leaderboard Bar -->
+                <div class="mb-6 p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg shrink-0">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-sm font-extrabold text-white">SMA UTME 2027 WhatsApp Community</h2>
+                            <p class="text-xs text-slate-400">Join the class group, follow the official channel, and check live rankings.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto shrink-0">
+                        <button type="button" id="startScreenLeaderboardBtn" class="flex-1 sm:flex-initial px-3.5 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 font-extrabold text-xs flex items-center justify-center gap-1.5 transition">
+                            <i class="fa-solid fa-trophy text-amber-400"></i>
+                            <span>Live Leaderboard</span>
+                        </button>
+                        <a id="bannerWhatsappGroupLink" href="https://chat.whatsapp.com/B8vMlgaPDsR0XApkbkdsqW?s=cl&p=a&iam=2" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center justify-center gap-2 transition">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>Join Group</span>
+                        </a>
+                        <a id="bannerWhatsappChannelLink" href="https://whatsapp.com/channel/0029VbEOxym3QxS1jjaYzJ1X" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-teal-500/40 text-teal-300 font-extrabold text-xs flex items-center justify-center gap-2 transition">
+                            <i class="fa-solid fa-bullhorn text-xs"></i>
+                            <span>Follow Channel</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher Tabs -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-1.5 bg-slate-950 border border-slate-800 rounded-2xl mb-6">
+                    <button type="button" id="tabFullMockBtn" class="py-3 px-4 rounded-xl font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 bg-emerald-600 text-white shadow-lg transition">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>General UTME Mock (180 Qs • 2 Hours)</span>
+                    </button>
+                    <button type="button" id="tabSingleSubjectBtn" class="py-3 px-4 rounded-xl font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800 transition">
+                        <i id="singleTabLockIcon" class="fa-solid fa-lock text-amber-400"></i>
+                        <span>Single Subject Practice</span>
+                        <span id="singleTabBadge" class="text-[10px] uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">Locked</span>
+                    </button>
+                </div>
+
+                <!-- Locked Mode Notice -->
+                <div id="lockedModeNotice" class="hidden mb-6 p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs sm:text-sm items-center gap-3">
+                    <i class="fa-solid fa-lock text-amber-400 text-base"></i>
+                    <span>Complete the General UTME Mock first to unlock Single Subject Practice.</span>
+                </div>
+
+                <!-- Header & Straight-to-the-Point Instructions -->
+                <div class="mb-6">
+                    <h1 id="heroMainTitle" class="text-xl sm:text-2xl font-extrabold text-white tracking-tight mb-3">
+                        Week 1 General Mock Examination
+                    </h1>
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4">
+                        <div class="text-xs font-extrabold uppercase tracking-wider text-emerald-400 mb-2">Examination Instructions</div>
+                        <ol class="text-xs sm:text-sm text-slate-200 space-y-1.5 font-medium">
+                            <li>1. Enter your WhatsApp username and phone number below.</li>
+                            <li>2. Select 3 subjects to combine with Use of English (180 questions, 120 minutes, scored over 400).</li>
+                            <li>3. Keyboard keys supported: <strong>A–E</strong> to pick an option, <strong>N / P</strong> or <strong>Arrow keys</strong> to navigate, <strong>S</strong> to submit.</li>
+                            <li class="text-rose-300 font-semibold">4. Do not minimize, switch tabs, or refresh the page during the exam — doing so submits your test immediately.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- SUBJECT COMBINATION SELECTOR -->
+                <div class="mb-6">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <label id="subjectSelectorHeading" class="text-xs font-bold uppercase tracking-wider text-slate-300">
+                            Select 3 Subjects to Join Use of English
+                        </label>
+                        <span id="selectionCounterBadge" class="text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                            4 / 4 Selected
+                        </span>
+                    </div>
+
+                    <div id="subjectCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                        <!-- Dynamically rendered subject cards -->
+                    </div>
+
+                    <p id="subjectSelectionError" class="hidden text-xs text-rose-400 mt-2.5 font-semibold flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span id="subjectSelectionErrorText">Select Use of English and 3 other subjects (4 total).</span>
+                    </p>
+                </div>
+
+                <!-- Candidate Login Form -->
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+                        <!-- WhatsApp Username -->
+                        <div class="md:col-span-4">
+                            <label for="candidateNameInput" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
+                                WhatsApp Username <span class="text-rose-400">*</span>
+                            </label>
+                            <div class="relative">
+                                <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                                <input
+                                    id="candidateNameInput"
+                                    type="text"
+                                    maxlength="40"
+                                    placeholder="e.g. Chinedu_SMA"
+                                    class="w-full pl-10 pr-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition text-sm"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp Phone Number -->
+                        <div class="md:col-span-4">
+                            <label for="candidatePhoneInput" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
+                                WhatsApp Phone Number <span class="text-rose-400">*</span>
+                            </label>
+                            <div class="relative">
+                                <i class="fa-brands fa-whatsapp absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-400 text-base"></i>
+                                <input
+                                    id="candidatePhoneInput"
+                                    type="tel"
+                                    maxlength="20"
+                                    placeholder="e.g. 08012345678"
+                                    class="w-full pl-10 pr-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition text-sm font-mono"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Start Button -->
+                        <div class="md:col-span-4">
+                            <button
+                                type="button"
+                                id="startQuizBtn"
+                                class="w-full py-3 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-900/40 flex items-center justify-center gap-2 transition"
+                            >
+                                <span id="startQuizBtnText">Start Exam</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <p id="loginErrorMsg" class="hidden text-xs text-rose-400 mt-3 font-semibold flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span id="loginErrorText">Enter your WhatsApp username and a valid phone number.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 2. ACTIVE CBT QUIZ SCREEN                  -->
+        <!-- ========================================== -->
+        <section id="quizScreen" class="hidden flex-1 flex-col gap-5">
+            
+            <!-- Subject Switcher Bar -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-2.5 shadow-lg flex flex-wrap items-center justify-between gap-2">
+                <div id="quizSubjectTabs" class="flex flex-wrap items-center gap-2 flex-1">
+                    <!-- Dynamically populated Subject Tabs -->
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="openCalculatorBtn" class="px-3.5 py-2 rounded-xl bg-violet-600/20 hover:bg-violet-600/30 border border-violet-500/40 text-violet-200 text-xs font-extrabold flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-calculator text-violet-400"></i>
+                        <span>Calculator</span>
+                    </button>
+                    <div class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs font-bold text-slate-300 flex items-center gap-2">
+                        <span>Answered:</span>
+                        <span id="overallAnsweredPill" class="text-emerald-400 font-extrabold">0 / 180</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start flex-1">
+                <!-- Left Column: Question Area (8 cols on desktop) -->
+                <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-8 shadow-xl flex flex-col justify-between min-h-[480px]">
+                    <div>
+                        <!-- Warning & Auto-Next Bar -->
+                        <div class="mb-4 px-3.5 py-2 rounded-xl bg-rose-500/10 border border-rose-500/25 text-rose-200 text-xs flex flex-wrap items-center justify-between gap-2">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-triangle-exclamation text-rose-400"></i>
+                                <span>Do not switch tabs or refresh — exam submits automatically.</span>
+                            </span>
+                            <label class="flex items-center gap-1.5 cursor-pointer text-emerald-300 font-semibold shrink-0">
+                                <input type="checkbox" id="autoNextToggle" checked class="rounded accent-emerald-500">
+                                <span>Auto-Next</span>
+                            </label>
+                        </div>
+
+                        <!-- Question Meta Header -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-800">
+                            <div class="flex items-center gap-2.5">
+                                <span id="questionNumberBadge" class="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-extrabold text-sm">
+                                    Question 1 of 60
+                                </span>
+                                <span id="activeSubjectPill" class="px-3 py-1 rounded-xl bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs">
+                                    Use of English
+                                </span>
+                            </div>
+
+                            <button type="button" id="flagQuestionBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-300 flex items-center gap-1.5 transition">
+                                <i class="fa-regular fa-bookmark" id="flagIcon"></i>
+                                <span id="flagText">Bookmark</span>
+                            </button>
+                        </div>
+
+                        <!-- Dedicated Passage Container (For English Questions 1-5 and 6-15) -->
+                        <div id="passageContainer" class="hidden mb-6 rounded-2xl bg-slate-950 border border-violet-500/40 p-4 sm:p-5 shadow-inner">
+                            <div class="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-slate-800">
+                                <span id="passageBadgeTitle" class="text-xs font-extrabold uppercase tracking-wider text-violet-300 flex items-center gap-2">
+                                    <i class="fa-solid fa-book-open-reader"></i>
+                                    <span>PASSAGE</span>
+                                </span>
+                            </div>
+                            <div id="passageBodyText" class="text-xs sm:text-sm text-slate-200 leading-relaxed whitespace-pre-line max-h-60 overflow-y-auto custom-scroll pr-1"></div>
+                        </div>
+
+                        <!-- Question Stem -->
+                        <h2 id="questionText" class="text-base sm:text-lg font-bold text-white leading-relaxed mb-6 whitespace-pre-line">
+                            Loading question...
+                        </h2>
+
+                        <!-- Options List -->
+                        <div id="optionsContainer" class="space-y-3">
+                            <!-- Dynamically populated options -->
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation Bar -->
+                    <div class="mt-8 pt-5 border-t border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                        <div class="flex items-center gap-2.5 flex-1">
+                            <button type="button" id="prevQuestionBtn" class="flex-1 sm:flex-initial px-5 py-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-bold text-sm flex items-center justify-center gap-2 transition">
+                                <i class="fa-solid fa-arrow-left"></i>
+                                <span id="prevBtnLabel">Previous</span>
+                            </button>
+
+                            <button type="button" id="nextQuestionBtn" class="flex-[2] sm:flex-1 py-3.5 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:pointer-events-none text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg transition">
+                                <span id="nextBtnLabel">Next</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <button type="button" id="openSubmitModalBtn" class="px-5 py-3.5 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-rose-900/30 transition">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Submit</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Subject Palette & Progress (4 cols on desktop) -->
+                <div class="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-6 shadow-xl">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="min-w-0">
+                            <h3 id="paletteSubjectTitle" class="font-bold text-white text-sm uppercase tracking-wider">English Questions</h3>
+                            <p id="candidateActiveDisplay" class="text-xs text-emerald-400 font-medium truncate"></p>
+                        </div>
+                        <span id="subjectAnsweredBadge" class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold shrink-0">
+                            0 / 60
+                        </span>
+                    </div>
+
+                    <!-- Overall Progress Bar -->
+                    <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden mb-4">
+                        <div id="progressBarFill" class="h-full bg-emerald-500 transition-all duration-300" style="width: 0%"></div>
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="grid grid-cols-3 gap-2 text-[11px] text-slate-400 mb-4 pb-3 border-b border-slate-800">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded bg-emerald-500 inline-block"></span>
+                            <span>Answered</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded bg-amber-500 inline-block"></span>
+                            <span>Bookmarked</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded bg-slate-800 border border-slate-700 inline-block"></span>
+                            <span>Unanswered</span>
+                        </div>
+                    </div>
+
+                    <!-- Question Numbers Grid for Active Subject -->
+                    <div id="questionGrid" class="grid grid-cols-6 sm:grid-cols-8 lg:grid-cols-6 gap-2 max-h-[320px] overflow-y-auto custom-scroll pr-1">
+                        <!-- Dynamically generated buttons -->
+                    </div>
+
+                    <!-- Full Submit Button -->
+                    <button type="button" id="paletteSubmitBtn" class="w-full mt-5 py-3.5 px-4 rounded-xl bg-rose-600/90 hover:bg-rose-500 text-white font-bold text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-rose-950/50">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span>Submit Exam</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 3. RESULTS SCREEN                          -->
+        <!-- ========================================== -->
+        <section id="resultScreen" class="hidden flex-1 py-4 space-y-8">
+            <div class="bg-slate-900 border border-emerald-500/40 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+                
+                <!-- Auto-Submit Notice Banner -->
+                <div id="proctorSubmissionBanner" class="hidden mb-6 p-4 rounded-2xl bg-rose-500/15 border border-rose-500/40 text-rose-200 text-xs sm:text-sm items-center gap-3">
+                    <i class="fa-solid fa-circle-exclamation text-rose-400 text-lg shrink-0"></i>
+                    <span id="proctorSubmissionReasonText" class="font-semibold">Submitted automatically due to page refresh or tab switch.</span>
+                </div>
+
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                    <div class="space-y-2">
+                        <div class="flex flex-wrap items-center gap-2 mb-1">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span id="resultModeBadgeText">Result Slip</span>
+                            </div>
+                            <span id="leaderboardSyncBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold">
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                                <span>Saving to Leaderboard...</span>
+                            </span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-white" id="resultTitle">
+                            SMA UTME 2027 — Week 1 Result
+                        </h1>
+                        <div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-sm text-slate-300">
+                            <span>Candidate: <strong id="resultCandidateName" class="text-emerald-400">Student</strong></span>
+                            <span class="text-slate-600">•</span>
+                            <span>WhatsApp: <strong id="resultCandidatePhone" class="text-teal-300 font-mono">080...</strong></span>
+                            <span class="text-slate-600">•</span>
+                            <span>Date: <span id="resultTimestamp" class="text-slate-400"></span></span>
+                        </div>
+                        <p class="text-xs text-slate-400 max-w-2xl" id="resultUnlockMessage">
+                            Single Subject Practice is now unlocked.
+                        </p>
+                    </div>
+
+                    <!-- Score Summary Box -->
+                    <div class="flex items-center gap-5 bg-slate-950/90 border border-slate-800 px-6 py-5 rounded-2xl shrink-0">
+                        <div class="text-center">
+                            <span id="primaryScoreLabel" class="block text-xs uppercase font-bold tracking-wider text-slate-400 mb-1">UTME Aggregate</span>
+                            <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400">
+                                <span id="resultAggregateNum">0</span><span id="resultAggregateMax" class="text-slate-500 text-xl">/400</span>
+                            </div>
+                        </div>
+                        <div class="h-12 w-px bg-slate-800"></div>
+                        <div class="text-center">
+                            <span id="secondaryScoreLabel" class="block text-xs uppercase font-bold tracking-wider text-slate-400 mb-1">Raw Score</span>
+                            <div class="text-xl sm:text-2xl font-extrabold text-white">
+                                <span id="resultRawScoreNum">0/180</span>
+                                <span id="resultPercentage" class="block text-xs text-slate-400 font-semibold mt-0.5">(0%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Per-Subject Breakdown Cards -->
+                <div id="subjectBreakdownGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-6">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <!-- Actions & Community Sharing Bar -->
+                <div class="mt-6 p-4 rounded-2xl bg-slate-800/70 border border-slate-700 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-chart-simple text-2xl text-emerald-400"></i>
+                        <div>
+                            <div id="remarkTitle" class="font-bold text-white text-sm sm:text-base">Remark</div>
+                            <p id="remarkSubtext" class="text-xs text-slate-300"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5 flex-wrap">
+                        <button type="button" id="resultViewLeaderboardBtn" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs sm:text-sm flex items-center gap-2 transition shadow-lg">
+                            <i class="fa-solid fa-trophy"></i>
+                            <span>View Live Rankings</span>
+                        </button>
+                        <button type="button" id="copyResultBtn" class="px-4 py-2.5 rounded-xl bg-green-600 hover:bg-green-500 text-white font-extrabold text-xs sm:text-sm flex items-center gap-2 transition shadow-lg">
+                            <span id="copyResultText">Copy Result for WhatsApp</span>
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                        </button>
+                        <a id="resultWhatsappGroupLink" href="https://chat.whatsapp.com/B8vMlgaPDsR0XApkbkdsqW?s=cl&p=a&iam=2" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center gap-2 transition">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>Join Group</span>
+                        </a>
+                        <a id="resultWhatsappChannelLink" href="https://whatsapp.com/channel/0029VbEOxym3QxS1jjaYzJ1X" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-teal-500/40 text-teal-300 font-bold text-xs sm:text-sm flex items-center gap-2 transition">
+                            <i class="fa-solid fa-bullhorn"></i>
+                            <span>Follow Channel</span>
+                        </a>
+                        <button type="button" id="proceedSinglePracticeBtn" class="px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs sm:text-sm flex items-center gap-2 transition">
+                            <i class="fa-solid fa-book"></i>
+                            <span>Single Subject Practice</span>
+                        </button>
+                        <button type="button" id="returnHomeBtn" class="px-4 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs sm:text-sm flex items-center gap-2 transition">
+                            <i class="fa-solid fa-house"></i>
+                            <span>Home</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Script Review Section -->
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800">
+                    <div>
+                        <h2 class="text-lg font-extrabold text-white">Corrections & Answer Key</h2>
+                        <p class="text-xs text-slate-400">Select a subject below to view your answers and explanations.</p>
+                    </div>
+                    <!-- Status Filter Buttons -->
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <button type="button" data-filter="all" class="review-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white transition">All</button>
+                        <button type="button" data-filter="wrong" class="review-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Missed / Skipped</button>
+                        <button type="button" data-filter="correct" class="review-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Correct</button>
+                    </div>
+                </div>
+
+                <!-- Review Subject Switcher Tabs -->
+                <div id="reviewSubjectTabs" class="flex flex-wrap items-center gap-2 mb-6">
+                    <!-- Dynamically populated -->
+                </div>
+
+                <div id="scriptReviewContainer" class="space-y-4"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (Clean — No Reset Button) -->
+    <footer class="border-t border-slate-900 py-4 px-6 text-center text-xs text-slate-500 flex flex-wrap items-center justify-between max-w-[92rem] w-full mx-auto gap-2">
+        <span>SUCCESS MINERS ACADEMY (SMA) • UTME 2027 CBT Portal</span>
+        <span class="text-slate-600">Week 1 Assessment</span>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- BUILT-IN CBT CALCULATOR                    -->
+    <!-- ========================================== -->
+    <div id="calculatorModal" class="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-40 hidden w-72 sm:w-80 bg-slate-900 border-2 border-violet-500/50 rounded-3xl shadow-2xl overflow-hidden">
+        <div id="calcDragHeader" class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between cursor-move select-none">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-calculator text-violet-400 text-xs"></i>
+                <span class="font-extrabold text-xs uppercase tracking-wider text-white">JAMB CBT Calculator</span>
+            </div>
+            <button type="button" id="closeCalculatorBtn" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white flex items-center justify-center text-xs transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="p-4 bg-slate-950/90 border-b border-slate-800 text-right font-mono">
+            <div id="calcExpression" class="text-xs text-slate-400 h-5 truncate"></div>
+            <div id="calcDisplay" class="text-2xl font-extrabold text-emerald-400 truncate mt-0.5">0</div>
+        </div>
+
+        <div class="p-3 grid grid-cols-4 gap-2 bg-slate-900">
+            <button type="button" data-calc="C" class="calc-btn h-10 rounded-xl bg-rose-600/20 hover:bg-rose-600/30 border border-rose-500/40 text-rose-300 font-extrabold text-xs">C</button>
+            <button type="button" data-calc="DEL" class="calc-btn h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 font-bold text-xs"><i class="fa-solid fa-delete-left"></i></button>
+            <button type="button" data-calc="(" class="calc-btn h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs">(</button>
+            <button type="button" data-calc=")" class="calc-btn h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs">)</button>
+
+            <button type="button" data-calc="sqrt" class="calc-btn h-10 rounded-xl bg-violet-500/15 hover:bg-violet-500/25 border border-violet-500/30 text-violet-300 font-bold text-xs">√x</button>
+            <button type="button" data-calc="sq" class="calc-btn h-10 rounded-xl bg-violet-500/15 hover:bg-violet-500/25 border border-violet-500/30 text-violet-300 font-bold text-xs">x²</button>
+            <button type="button" data-calc="inv" class="calc-btn h-10 rounded-xl bg-violet-500/15 hover:bg-violet-500/25 border border-violet-500/30 text-violet-300 font-bold text-xs">1/x</button>
+            <button type="button" data-calc="%" class="calc-btn h-10 rounded-xl bg-violet-500/15 hover:bg-violet-500/25 border border-violet-500/30 text-violet-300 font-bold text-xs">%</button>
+
+            <button type="button" data-calc="7" class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">7</button>
+            <button type="button" data-calc="8" class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">8</button>
+            <button type="button" data-calc="9" class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">9</button>
+            <button type="button" data-calc="/" class="calc-btn h-11 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 font-extrabold text-base">÷</button>
+
+            <button type="button" data-calc="4" class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">4</button>
+            <button type="button" data-calc="5" class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">5</button>
+            <button type="button" data-calc="6" class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">6</button>
+            <button type="button" data-calc="*" class="calc-btn h-11 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 font-extrabold text-base">×</button>
+
+            <button type="button" data-calc="1" class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">1</button>
+            <button type="button" data-calc="2" class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">2</button>
+            <button type="button" data-calc="3" class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">3</button>
+            <button type="button" data-calc="-" class="calc-btn h-11 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 font-extrabold text-base">−</button>
+
+            <button type="button" data-calc="0" class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">0</button>
+            <button type="button" data-calc="." class="calc-btn h-11 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-white font-extrabold text-base">.</button>
+            <button type="button" data-calc="=" class="calc-btn h-11 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base shadow-lg transition">=</button>
+            <button type="button" data-calc="+" class="calc-btn h-11 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 font-extrabold text-base">+</button>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- LIVE LEADERBOARD MODAL                     -->
+    <!-- ========================================== -->
+    <div id="leaderboardModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/85 backdrop-blur-sm p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-4xl w-full p-5 sm:p-7 shadow-2xl flex flex-col max-h-[90vh]">
+            <!-- Header -->
+            <div class="flex items-center justify-between gap-3 pb-4 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-white">SMA UTME 2027 — Live Leaderboard</h3>
+                        <p id="leaderboardStatusSubtext" class="text-xs text-slate-400">Ranked by highest score, then fastest completion time.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="refreshLeaderboardBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-rotate" id="refreshLeaderboardIcon"></i>
+                        <span class="hidden sm:inline">Refresh</span>
+                    </button>
+                    <button type="button" id="closeLeaderboardBtn" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white flex items-center justify-center transition">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Tabs -->
+            <div id="leaderboardTabsContainer" class="flex items-center gap-2 overflow-x-auto custom-scroll py-3 border-b border-slate-800 shrink-0">
+                <button type="button" data-lb-tab="full_mock" class="lb-tab-btn px-3.5 py-2 rounded-xl text-xs font-extrabold bg-emerald-600 text-white shrink-0 transition">
+                    General UTME Mock (/400)
+                </button>
+                <button type="button" data-lb-tab="english" class="lb-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 shrink-0 transition">
+                    English (/60)
+                </button>
+                <button type="button" data-lb-tab="mathematics" class="lb-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 shrink-0 transition">
+                    Mathematics (/40)
+                </button>
+                <button type="button" data-lb-tab="chemistry" class="lb-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 shrink-0 transition">
+                    Chemistry (/40)
+                </button>
+                <button type="button" data-lb-tab="physics" class="lb-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 shrink-0 transition">
+                    Physics (/40)
+                </button>
+                <button type="button" data-lb-tab="biology" class="lb-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 shrink-0 transition">
+                    Biology (/40)
+                </button>
+            </div>
+
+            <!-- Rankings Table Body -->
+            <div class="flex-1 overflow-y-auto custom-scroll mt-4 pr-1">
+                <div id="leaderboardListContainer" class="space-y-2.5">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SUBMIT CONFIRMATION MODAL                  -->
+    <!-- ========================================== -->
+    <div id="submitModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl">
+            <h3 class="text-xl font-extrabold text-white mb-2">Submit Exam?</h3>
+            <p class="text-xs sm:text-sm text-slate-300 mb-4">Check your answered questions below before final submission.</p>
+            
+            <div id="modalSubjectBreakdown" class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 mb-5 space-y-2 text-xs">
+                <!-- Populated dynamically -->
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button type="button" id="cancelSubmitBtn" class="flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm transition">Go Back</button>
+                <button type="button" id="confirmSubmitBtn" class="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm shadow-lg transition">Submit Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- COMPLETE QUESTION BANKS & FIREBASE LOGIC   -->
+    <!-- ========================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- 1. OFFICIAL WHATSAPP COMMUNITY LINKS ---
+        const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/B8vMlgaPDsR0XApkbkdsqW?s=cl&p=a&iam=2";
+        const WHATSAPP_CHANNEL_LINK = "https://whatsapp.com/channel/0029VbEOxym3QxS1jjaYzJ1X";
+
+        ["navWhatsappGroupLink", "bannerWhatsappGroupLink", "resultWhatsappGroupLink"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.href = WHATSAPP_GROUP_LINK;
+        });
+        ["navWhatsappChannelLink", "bannerWhatsappChannelLink", "resultWhatsappChannelLink"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.href = WHATSAPP_CHANNEL_LINK;
+        });
+
+        // --- 2. FIREBASE CONFIGURATION & DUAL-SYNC SETUP ---
+        const USER_FIREBASE_CONFIG = {
+            apiKey: "AIzaSyBeQQ6xtFpAmTeCbDBMMIxJ3p59L3RI3rE",
+            authDomain: "sma-science-cbt-wk1.firebaseapp.com",
+            projectId: "sma-science-cbt-wk1",
+            storageBucket: "sma-science-cbt-wk1.firebasestorage.app",
+            messagingSenderId: "136225730965",
+            appId: "1:136225730965:web:494ce7a39f0d1be60f489c",
+            measurementId: "G-JRRJYNQ8P5"
+        };
+
+        const LOCAL_LEADERBOARD_CACHE_KEY = "SMA_UTME_2027_LB_CACHE_V1";
+        let userDb = null;
+        let envDb = null;
+        let envAppId = typeof __app_id !== "undefined" ? __app_id : "sma-utme-2027-cbt";
+        let cloudEntries = [];
+        let activeLeaderboardTab = "full_mock";
+
+        async function initFirebaseConnections() {
+            // Initialize User's SMA Firebase Project
+            try {
+                const userApp = initializeApp(USER_FIREBASE_CONFIG, "smaUserProject");
+                userDb = getFirestore(userApp);
+                const userAuth = getAuth(userApp);
+                signInAnonymously(userAuth).catch(() => {});
+            } catch (e) {
+                console.warn("User Firebase init notice:", e);
+            }
+
+            // Initialize Environment Firebase if provided in preview sandbox
+            try {
+                if (typeof __firebase_config !== "undefined" && __firebase_config) {
+                    const parsedEnvConfig = JSON.parse(__firebase_config);
+                    const envApp = initializeApp(parsedEnvConfig, "envProject");
+                    envDb = getFirestore(envApp);
+                    const envAuth = getAuth(envApp);
+                    if (typeof __initial_auth_token !== "undefined" && __initial_auth_token) {
+                        await signInWithCustomToken(envAuth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(envAuth);
+                    }
+                    const envCol = collection(envDb, "artifacts", envAppId, "public", "data", "leaderboard");
+                    onSnapshot(
+                        envCol,
+                        (snap) => {
+                            const items = [];
+                            snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+                            mergeCloudEntries(items);
+                        },
+                        (err) => console.warn("Env leaderboard listener notice:", err)
+                    );
+                }
+            } catch (e) {
+                console.warn("Env Firebase notice:", e);
+            }
+
+            // Attach live listener to User's Firestore "leaderboard" collection
+            if (userDb) {
+                try {
+                    const userCol = collection(userDb, "leaderboard");
+                    onSnapshot(
+                        userCol,
+                        (snap) => {
+                            const items = [];
+                            snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+                            mergeCloudEntries(items);
+                            document.getElementById("leaderboardStatusSubtext").textContent = "Live sync connected • Ranked by highest score, then fastest time.";
+                        },
+                        (err) => {
+                            console.warn("User Firestore listener notice:", err);
+                        }
+                    );
+                } catch (e) {
+                    console.warn("Snapshot setup notice:", e);
+                }
+            }
+        }
+
+        function getLocalCachedLeaderboard() {
+            try {
+                const raw = localStorage.getItem(LOCAL_LEADERBOARD_CACHE_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveEntryToLocalCache(entry) {
+            try {
+                const list = getLocalCachedLeaderboard();
+                list.push(entry);
+                localStorage.setItem(LOCAL_LEADERBOARD_CACHE_KEY, JSON.stringify(list));
+            } catch (e) {
+                console.warn("Local leaderboard cache error:", e);
+            }
+        }
+
+        function mergeCloudEntries(newItems) {
+            const map = new Map();
+            cloudEntries.forEach(item => {
+                const key = item.entryUid || `${item.candidateName}_${item.category}_${item.timestampMs}`;
+                map.set(key, item);
+            });
+            newItems.forEach(item => {
+                const key = item.entryUid || `${item.candidateName}_${item.category}_${item.timestampMs}`;
+                map.set(key, item);
+            });
+            cloudEntries = Array.from(map.values());
+            if (!document.getElementById("leaderboardModal").classList.contains("hidden")) {
+                renderLeaderboardList();
+            }
+        }
+
+        async function fetchAllLeaderboardEntries() {
+            const refreshIcon = document.getElementById("refreshLeaderboardIcon");
+            if (refreshIcon) refreshIcon.classList.add("fa-spin");
+
+            if (userDb) {
+                try {
+                    const snap = await getDocs(collection(userDb, "leaderboard"));
+                    const items = [];
+                    snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+                    mergeCloudEntries(items);
+                } catch (e) {
+                    console.warn("Fetch userDb leaderboard notice:", e);
+                }
+            }
+
+            if (envDb) {
+                try {
+                    const snap = await getDocs(collection(envDb, "artifacts", envAppId, "public", "data", "leaderboard"));
+                    const items = [];
+                    snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+                    mergeCloudEntries(items);
+                } catch (e) {
+                    console.warn("Fetch envDb leaderboard notice:", e);
+                }
+            }
+
+            if (refreshIcon) refreshIcon.classList.remove("fa-spin");
+            renderLeaderboardList();
+        }
+
+        function maskPhoneNumber(phone) {
+            const digits = String(phone || "").replace(/\D/g, "");
+            if (digits.length < 7) return "***";
+            return `${digits.slice(0, 4)}***${digits.slice(-2)}`;
+        }
+
+        function formatDurationShort(seconds) {
+            const s = Math.max(1, Number(seconds) || 0);
+            const mins = Math.floor(s / 60);
+            const secs = s % 60;
+            return `${mins}m ${String(secs).padStart(2, "0")}s`;
+        }
+
+        async function submitExamScoreToLeaderboard(payload) {
+            const syncBadge = document.getElementById("leaderboardSyncBadge");
+            if (syncBadge) {
+                syncBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold";
+                syncBadge.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i><span>Saving to Leaderboard...</span>`;
+            }
+
+            saveEntryToLocalCache(payload);
+            mergeCloudEntries([payload]);
+
+            let savedToCloud = false;
+
+            if (userDb) {
+                try {
+                    await addDoc(collection(userDb, "leaderboard"), payload);
+                    savedToCloud = true;
+                } catch (e) {
+                    console.warn("Could not write to userDb leaderboard:", e);
+                }
+            }
+
+            if (envDb) {
+                try {
+                    await addDoc(collection(envDb, "artifacts", envAppId, "public", "data", "leaderboard"), payload);
+                    savedToCloud = true;
+                } catch (e) {
+                    console.warn("Could not write to envDb leaderboard:", e);
+                }
+            }
+
+            if (syncBadge) {
+                if (savedToCloud) {
+                    syncBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold";
+                    syncBadge.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i><span>Saved to Live Leaderboard</span>`;
+                } else {
+                    syncBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/15 border border-teal-500/30 text-teal-300 text-xs font-bold";
+                    syncBadge.innerHTML = `<i class="fa-solid fa-check"></i><span>Recorded on Leaderboard</span>`;
+                }
+            }
+        }
+
+        function renderLeaderboardList() {
+            const container = document.getElementById("leaderboardListContainer");
+            if (!container) return;
+
+            // Combine cloud entries + local cache without duplicates
+            const combinedMap = new Map();
+            [...getLocalCachedLeaderboard(), ...cloudEntries].forEach(item => {
+                if (!item || item.category !== activeLeaderboardTab) return;
+                const key = item.entryUid || `${item.candidateName}_${item.category}_${item.timestampMs}`;
+                combinedMap.set(key, item);
+            });
+
+            // Deduplicate by candidate (keep best score per candidate in this category)
+            const bestByCandidate = new Map();
+            Array.from(combinedMap.values()).forEach(entry => {
+                const candidateKey = `${String(entry.candidateName || "").toLowerCase().trim()}_${String(entry.maskedPhone || "")}`;
+                const existing = bestByCandidate.get(candidateKey);
+                if (!existing) {
+                    bestByCandidate.set(candidateKey, entry);
+                } else {
+                    if (
+                        entry.score > existing.score ||
+                        (entry.score === existing.score && entry.timeSpentSeconds < existing.timeSpentSeconds)
+                    ) {
+                        bestByCandidate.set(candidateKey, entry);
+                    }
+                }
+            });
+
+            const sorted = Array.from(bestByCandidate.values()).sort((a, b) => {
+                if (b.score !== a.score) return b.score - a.score;
+                return (a.timeSpentSeconds || 999999) - (b.timeSpentSeconds || 999999);
+            });
+
+            if (sorted.length === 0) {
+                container.innerHTML = `
+                    <div class="p-10 text-center bg-slate-950/70 border border-slate-800 rounded-2xl">
+                        <i class="fa-solid fa-ranking-star text-3xl text-slate-600 mb-2"></i>
+                        <p class="text-sm font-bold text-slate-300">No scores recorded in this category yet.</p>
+                        <p class="text-xs text-slate-500 mt-1">Complete an examination to claim the #1 spot on the leaderboard.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = "";
+            sorted.slice(0, 50).forEach((entry, index) => {
+                const rank = index + 1;
+                const isCurrentUser = candidateName && entry.candidateName.toLowerCase() === candidateName.toLowerCase();
+
+                let rankBadge = `<span class="w-8 h-8 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 font-extrabold text-xs flex items-center justify-center shrink-0">#${rank}</span>`;
+                let rowStyle = "bg-slate-950/80 border-slate-800";
+
+                if (rank === 1) {
+                    rankBadge = `<span class="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 font-black text-xs flex items-center justify-center shrink-0 shadow"><i class="fa-solid fa-crown"></i></span>`;
+                    rowStyle = "bg-amber-500/10 border-amber-500/40";
+                } else if (rank === 2) {
+                    rankBadge = `<span class="w-8 h-8 rounded-xl bg-slate-300 text-slate-950 font-black text-xs flex items-center justify-center shrink-0"><i class="fa-solid fa-medal"></i></span>`;
+                    rowStyle = "bg-slate-800/80 border-slate-600/50";
+                } else if (rank === 3) {
+                    rankBadge = `<span class="w-8 h-8 rounded-xl bg-amber-700 text-white font-black text-xs flex items-center justify-center shrink-0"><i class="fa-solid fa-award"></i></span>`;
+                    rowStyle = "bg-amber-900/15 border-amber-700/40";
+                }
+
+                if (isCurrentUser) {
+                    rowStyle += " ring-1 ring-emerald-500";
+                }
+
+                const row = document.createElement("div");
+                row.className = `p-3.5 rounded-2xl border flex items-center justify-between gap-3 ${rowStyle}`;
+                row.innerHTML = `
+                    <div class="flex items-center gap-3 min-w-0">
+                        ${rankBadge}
+                        <div class="min-w-0">
+                            <div class="flex items-center gap-2">
+                                <span class="font-extrabold text-white text-sm truncate">${entry.candidateName}</span>
+                                ${isCurrentUser ? `<span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">You</span>` : ""}
+                            </div>
+                            <div class="text-[11px] text-slate-400 flex flex-wrap items-center gap-x-2">
+                                <span class="font-mono">${entry.maskedPhone || "***"}</span>
+                                ${entry.combination ? `<span>• ${entry.combination}</span>` : ""}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 shrink-0 text-right">
+                        <div class="hidden sm:block">
+                            <span class="block text-[10px] uppercase text-slate-400 font-bold">Time</span>
+                            <span class="font-mono text-xs font-semibold text-slate-200">${formatDurationShort(entry.timeSpentSeconds)}</span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] uppercase text-slate-400 font-bold">Score</span>
+                            <span class="text-base sm:text-lg font-extrabold text-emerald-400">${entry.score}<span class="text-xs text-slate-500">/${entry.maxScore}</span></span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function openLeaderboardModal(defaultTab = null) {
+            if (defaultTab) {
+                activeLeaderboardTab = defaultTab;
+            }
+            document.querySelectorAll(".lb-tab-btn").forEach(b => {
+                const tabKey = b.getAttribute("data-lb-tab");
+                b.className = tabKey === activeLeaderboardTab
+                    ? "lb-tab-btn px-3.5 py-2 rounded-xl text-xs font-extrabold bg-emerald-600 text-white shrink-0 transition"
+                    : "lb-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 shrink-0 transition";
+            });
+            const modal = document.getElementById("leaderboardModal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+            fetchAllLeaderboardEntries();
+        }
+
+        document.getElementById("topNavLeaderboardBtn").addEventListener("click", () => openLeaderboardModal());
+        document.getElementById("startScreenLeaderboardBtn").addEventListener("click", () => openLeaderboardModal());
+        document.getElementById("resultViewLeaderboardBtn").addEventListener("click", () => {
+            const tab = examMode === "full_mock" ? "full_mock" : (activeExamSubjects[0]?.key || "full_mock");
+            openLeaderboardModal(tab);
+        });
+        document.getElementById("closeLeaderboardBtn").addEventListener("click", () => {
+            const modal = document.getElementById("leaderboardModal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        });
+        document.getElementById("refreshLeaderboardBtn").addEventListener("click", fetchAllLeaderboardEntries);
+
+        document.querySelectorAll(".lb-tab-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                activeLeaderboardTab = btn.getAttribute("data-lb-tab");
+                document.querySelectorAll(".lb-tab-btn").forEach(b => {
+                    b.className = "lb-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 shrink-0 transition";
+                });
+                btn.className = "lb-tab-btn px-3.5 py-2 rounded-xl text-xs font-extrabold bg-emerald-600 text-white shrink-0 transition";
+                renderLeaderboardList();
+            });
+        });
+
+        // --- LOCAL STORAGE KEYS ---
+        const STORAGE_PROGRESS_KEY = "SMA_UTME_2027_PROGRESS_V2";
+        const STORAGE_ACTIVE_EXAM_KEY = "SMA_UTME_2027_ACTIVE_SESSION_V2";
+
+        // --- ENGLISH READING PASSAGES ---
+        const PASSAGE_1 = "For a long time, humanity followed the natural course of unrestrained reproduction. This made sense historically because natural disasters, diseases, and widespread famine naturally reduced human populations, keeping numbers in check. Recently, humans have successfully rebelled against this natural waste of life by significantly lowering the death rate through medicine and technology. However, interfering with nature's mortality rate means we cannot allow the birth rate to remain at its natural maximum without severe consequences. We must purposefully find an equation and establish a balance, or else famine will inevitably stalk the earth once more.";
+
+        const PASSAGE_2 = "Using a dictionary is highly recommended for language learners because it provides essential facts and ...(6)... about grammar and usage that are hard to find elsewhere. Contextual analysis helps immensely in ...(7)... the exact meaning of a word. However, students should not ruin their reading speed by ...(8)... every single unfamiliar word they encounter. Instead, they are advised to read in phrases and try to guess the ...(9)... from the surrounding context. If guessing from context fails, specific ...(10)... should be given to improve dictionary skills. This ensures students don't develop an excessive ...(11)... on the dictionary. Teachers should avoid merely ...(12)... students to guess word meanings without follow-up; instead, comparing their guesses with dictionary definitions is a great ...(13).... This broadens their conceptual understanding of the various ...(14)... a word might carry, and helps to ...(15)... the accuracy of their initial guesses.";
+
+        // --- 1. ENGLISH_QUESTIONS (60 QUESTIONS) ---
+        const ENGLISH_QUESTIONS = [
+            { id: 1, passageTitle: "PASSAGE 1 (Questions 1–5)", passage: PASSAGE_1, question: "The author notes that historically, natural disasters and diseases were...", options: ["cruel, heartless, and entirely unnecessary.", "caused by the extravagance of nature.", "logical at a time when human reproduction was uncontrolled.", "a result of mankind's lack of medical knowledge."], correctIndex: 2, explanation: "The passage implies that nature's harsh methods of population control 'made sense' when humans were reproducing at maximum capacity." },
+            { id: 2, passageTitle: "PASSAGE 1 (Questions 1–5)", passage: PASSAGE_1, question: "Which of these statements contradicts the author's viewpoint?", options: ["Mankind has started to interfere with the work of nature.", "Humanity should maximize its reproduction to survive.", "In the past, many people died through pestilence and famine.", "Mankind must establish an equilibrium between birth and death rates."], correctIndex: 1, explanation: "The author explicitly warns against maximizing reproduction now that the death rate has been lowered." },
+            { id: 3, passageTitle: "PASSAGE 1 (Questions 1–5)", passage: PASSAGE_1, question: "In the context of the text, to 'impose on nature' implies that humanity must...", options: ["realistically find an equation to balance birth and death.", "try to fight and conquer the natural environment.", "completely stop natural disasters from occurring.", "allow nature to take its course without interference."], correctIndex: 0, explanation: "To impose our own order on nature means purposefully establishing a balance or equation between the birth rate and death rate." },
+            { id: 4, passageTitle: "PASSAGE 1 (Questions 1–5)", passage: PASSAGE_1, question: "The primary main idea of this passage is that...", options: ["nature is heartless and cruel to humanity.", "man should control the birth rate to prevent famine.", "mankind will soon perish of starvation.", "pestilence causes more deaths than war."], correctIndex: 1, explanation: "The central theme is that because we have reduced the death rate, we must now consciously control the birth rate to avoid mass starvation." },
+            { id: 5, passageTitle: "PASSAGE 1 (Questions 1–5)", passage: PASSAGE_1, question: "Why was a high reproduction rate somewhat necessary in the past?", options: ["To compensate for the high mortality rate caused by nature.", "Because people desired large families for agricultural labor.", "To help mankind conquer new lands and expand empires.", "To fight against natural disasters effectively."], correctIndex: 0, explanation: "High reproduction was needed to balance the massive loss of life from famine, disease, and war." },
+            { id: 6, passageTitle: "PASSAGE 2 — CLOZE TEST (Questions 6–15)", passage: PASSAGE_2, question: "Fill in gap 6 in Passage 2:", options: ["details", "knowledge", "information", "data"], correctIndex: 2, explanation: "Provides essential facts and 'information' about grammar and usage." },
+            { id: 7, passageTitle: "PASSAGE 2 — CLOZE TEST (Questions 6–15)", passage: PASSAGE_2, question: "Fill in gap 7 in Passage 2:", options: ["forming", "getting", "creating", "knowing"], correctIndex: 1, explanation: "Contextual analysis helps immensely in 'getting' the exact meaning of a word." },
+            { id: 8, passageTitle: "PASSAGE 2 — CLOZE TEST (Questions 6–15)", passage: PASSAGE_2, question: "Fill in gap 8 in Passage 2:", options: ["pondering", "meditating", "looking up", "staring at"], correctIndex: 2, explanation: "Students should not ruin their reading speed by 'looking up' every single unfamiliar word." },
+            { id: 9, passageTitle: "PASSAGE 2 — CLOZE TEST (Questions 6–15)", passage: PASSAGE_2, question: "Fill in gap 9 in Passage 2:", options: ["meaning", "spelling", "pronunciation", "origin"], correctIndex: 0, explanation: "They are advised to read in phrases and try to guess the 'meaning' from the surrounding context." },
+            { id: 10, passageTitle: "PASSAGE 2 — CLOZE TEST (Questions 6–15)", passage: PASSAGE_2, question: "Fill in gap 10 in Passage 2:", options: ["practice", "exercises", "notes", "passages"], correctIndex: 1, explanation: "Specific 'exercises' should be given to improve dictionary skills." },
+            { id: 11, passageTitle: "PASSAGE 2 — CLOZE TEST (Questions 6–15)", passage: PASSAGE_2, question: "Fill in gap 11 in Passage 2:", options: ["reliance", "focus", "decoding", "guessing"], correctIndex: 0, explanation: "This ensures students don't develop an excessive 'reliance' on the dictionary." },
+            { id: 12, passageTitle: "PASSAGE 2 — CLOZE TEST (Questions 6–15)", passage: PASSAGE_2, question: "Fill in gap 12 in Passage 2:", options: ["teaching", "asking", "making", "allowing"], correctIndex: 1, explanation: "Teachers should avoid merely 'asking' students to guess word meanings without follow-up." },
+            { id: 13, passageTitle: "PASSAGE 2 — CLOZE TEST (Questions 6–15)", passage: PASSAGE_2, question: "Fill in gap 13 in Passage 2:", options: ["procedure", "method", "means", "strategy"], correctIndex: 3, explanation: "Comparing their guesses with dictionary definitions is a great 'strategy'." },
+            { id: 14, passageTitle: "PASSAGE 2 — CLOZE TEST (Questions 6–15)", passage: PASSAGE_2, question: "Fill in gap 14 in Passage 2:", options: ["interpretations", "pronunciations", "sounds", "spellings"], correctIndex: 0, explanation: "Broadens their conceptual understanding of the various 'interpretations' a word might carry." },
+            { id: 15, passageTitle: "PASSAGE 2 — CLOZE TEST (Questions 6–15)", passage: PASSAGE_2, question: "Fill in gap 15 in Passage 2:", options: ["destroy", "validate", "confirm", "alter"], correctIndex: 2, explanation: "Helps to 'confirm' the accuracy of their initial guesses." },
+            { id: 16, question: "Choose the option nearest in meaning to the emphasized word(s): His summary of the meeting was BRIEF AND TO THE POINT.", options: ["careful", "precise", "accurate", "crucial"], correctIndex: 1, explanation: "'Precise' involves exactness and clarity while being brief." },
+            { id: 17, question: "Choose the option nearest in meaning to the emphasized word: Their strength is their STAGGERING capacity to reproduce.", options: ["unstable", "unreliable", "qualitative", "overwhelming"], correctIndex: 3, explanation: "'Staggering' means deeply shocking, astonishing, or overwhelming." },
+            { id: 18, question: "Choose the option nearest in meaning to the emphasized word: For a long time, the robber defied police warnings as if he was INVULNERABLE.", options: ["perfectly justifiable", "difficult to catch", "impossible to harm", "indifferent to danger"], correctIndex: 2, explanation: "'Invulnerable' means incapable of being wounded or hurt (impossible to harm)." },
+            { id: 19, question: "Choose the option nearest in meaning to the emphasized word: Because our representative is immature, he takes a JAUNDICED view of our social problems.", options: ["hazy", "prejudiced", "bright", "unclear"], correctIndex: 1, explanation: "A 'jaundiced view' is an attitude corrupted by bitterness, envy, or prejudice." },
+            { id: 20, question: "Choose the option nearest in meaning to the emphasized word: Many Nigerians have INURED themselves to hardship.", options: ["subjected", "accustomed", "endeared", "submitted"], correctIndex: 1, explanation: "To be 'inured' to something means to become accustomed to it, especially something unpleasant." },
+            { id: 21, question: "Choose the option nearest in meaning to the emphasized word: He might be compelled to make a MOMENTOUS decision.", options: ["voluntary", "spontaneous", "important", "involuntary"], correctIndex: 2, explanation: "'Momentous' describes a decision or event of great importance or significance." },
+            { id: 22, question: "Choose the option nearest in meaning to the emphasized word: Our local paper is noted for its INCISIVE editorials on local politics.", options: ["sarcastic", "penetrating", "decisive", "destructive"], correctIndex: 1, explanation: "'Incisive' implies clear, sharp, and penetrating thought or expression." },
+            { id: 23, question: "Choose the option nearest in meaning to the emphasized word: There are many VENAL judges in our law courts today.", options: ["qualified", "professional", "corrupt", "honest"], correctIndex: 2, explanation: "'Venal' describes someone motivated by bribery or susceptible to being bought off (corrupt)." },
+            { id: 24, question: "Choose the option nearest in meaning to the emphasized word: The minister's anger was AGGRAVATED by the news of the disaster.", options: ["abated", "magnified", "intensified", "impeded"], correctIndex: 2, explanation: "To aggravate means to make a bad situation worse or more intense (intensified)." },
+            { id: 25, question: "Choose the option nearest in meaning to the emphasized word: I cannot understand why Ali should serve in that MORIBUND administration.", options: ["purposeless", "crumbling", "prodigal", "oppressive"], correctIndex: 1, explanation: "'Moribund' means being at the point of death, declining, or crumbling." },
+            { id: 26, question: "Choose the option opposite in meaning to the emphasized word: He is well known for his INORDINATE ambition.", options: ["passionate", "sound", "excessive", "moderate"], correctIndex: 3, explanation: "'Inordinate' means excessive; its opposite is moderate." },
+            { id: 27, question: "Choose the option opposite in meaning to the emphasized word: A CONSERVATIVE estimate put the number of missing persons at forty.", options: ["an accurate", "an incorrect", "a rough", "a primitive"], correctIndex: 0, explanation: "A conservative estimate is cautious and rough; 'an accurate' estimate is the opposite." },
+            { id: 28, question: "Choose the option opposite in meaning to the emphasized word: Agbenu was ECSTATIC about her result.", options: ["sad", "dispassionate", "mad", "pessimistic"], correctIndex: 0, explanation: "'Ecstatic' means overwhelmingly joyful; its direct opposite is sad." },
+            { id: 29, question: "Choose the option opposite in meaning to the emphasized word: The labour leader's RECALCITRANT stance was applauded.", options: ["flexible", "uncompromising", "well-informed", "stubborn"], correctIndex: 0, explanation: "'Recalcitrant' means stubborn or uncooperative; the opposite is flexible." },
+            { id: 30, question: "Choose the option opposite in meaning to the emphasized word: GREGARIOUS animals can be found in the zoo.", options: ["lonely", "tame", "wild", "various"], correctIndex: 0, explanation: "'Gregarious' refers to sociable animals living in groups; the opposite is lonely (solitary)." },
+            { id: 31, question: "Choose the option opposite in meaning to the emphasized word: Only those who are GULLIBLE fall victim to his trickery.", options: ["astute", "courteous", "saucy", "devastated"], correctIndex: 0, explanation: "'Gullible' means easily tricked; the opposite is astute (sharp and perceptive)." },
+            { id: 32, question: "Choose the option opposite in meaning to the emphasized word: The witness decided to CONCEAL the evidence.", options: ["waive", "divulge", "hide", "destroy"], correctIndex: 1, explanation: "To conceal is to hide; to divulge is to reveal." },
+            { id: 33, question: "Choose the option opposite in meaning to the emphasized word: The move to expel the chairman was SANCTIONED by members of the party.", options: ["unleashed", "opposed", "supported", "initiated"], correctIndex: 1, explanation: "'Sanctioned' means officially approved; the opposite is opposed." },
+            { id: 34, question: "Choose the option opposite in meaning to the emphasized word: The doctor tried to SOOTHE the patient before the operation.", options: ["examine", "treat", "calm", "provoke"], correctIndex: 3, explanation: "To soothe is to calm; to provoke is to annoy or agitate." },
+            { id: 35, question: "Choose the option opposite in meaning to the emphasized word: I find the way she approaches her customers quite REPUGNANT.", options: ["unpleasant", "attractive", "ungodly", "encouraging"], correctIndex: 1, explanation: "'Repugnant' means extremely distasteful; its antonym is attractive." },
+            { id: 36, question: "Select the option that best explains the information conveyed: John must be happy today.", options: ["I am sure John is happy today.", "John is happy today.", "I hope John is happy today.", "It is possible John is happy today."], correctIndex: 0, explanation: "The modal 'must' here expresses strong logical deduction or certainty." },
+            { id: 37, question: "Select the option that best explains the information conveyed: If he were to apologize, I would probably forgive him.", options: ["He is likely to apologize and be forgiven.", "I shall definitely forgive him if he apologizes.", "If he apologizes I shall decide whether or not to forgive him.", "He will not apologize and I will not forgive him."], correctIndex: 2, explanation: "'Would probably' indicates likelihood rather than certainty, leaving room for decision." },
+            { id: 38, question: "Select the option that best explains the information conveyed: Victor will not attend the dinner party tonight: he is afraid of his own shadow.", options: ["not in the mood", "attending another party", "scared of imaginary things", "unhappy with his role"], correctIndex: 2, explanation: "To be 'afraid of one's own shadow' means to be easily frightened by non-existent threats." },
+            { id: 39, question: "Select the option that best explains the information conveyed: My friend will hate his uncle forever because he left him in the lurch.", options: ["abandoned him", "punished him", "disrespected him", "despised him"], correctIndex: 0, explanation: "To 'leave someone in the lurch' means to abandon them in difficulty." },
+            { id: 40, question: "Select the option that best explains the information conveyed: Ike is head over heels in love with Ngozi.", options: ["Ike is friendly with Ngozi.", "Ike is trying to fall in love with Ngozi.", "Ike is madly in love with Ngozi.", "Ngozi fell on Ike's heel."], correctIndex: 2, explanation: "'Head over heels' means completely or madly in love." },
+            { id: 41, question: "Select the option that best explains the information conveyed: The salesman tried to pull the wool over my eyes.", options: ["force me to buy his goods", "offer me cotton wool", "make me buy his wool", "dupe me"], correctIndex: 3, explanation: "'To pull the wool over someone's eyes' means to deceive or dupe them." },
+            { id: 42, question: "Select the option that best explains the information conveyed: Old customs die hard.", options: ["cause a lot of hardship and death", "must be stopped", "never die out", "tend to last for a long time"], correctIndex: 3, explanation: "'Die hard' means taking a very long time to disappear." },
+            { id: 43, question: "Select the option that best explains the information conveyed: An open secret means...", options: ["a fact that is very secret", "an open matter", "a secret known to everybody", "a confidential matter"], correctIndex: 2, explanation: "An 'open secret' is a supposed secret that is actually known to everyone." },
+            { id: 44, question: "Select the option that best explains the information conveyed: The President stood his ground because the Committee members would not be persuaded.", options: ["yielded his position", "shifted his position", "maintained his position", "defended his position"], correctIndex: 2, explanation: "To 'stand one's ground' means to maintain one's position firmly." },
+            { id: 45, question: "Select the option that best explains the information conveyed: Ekwensi's account with the bank is in the red.", options: ["was written in red ink", "is overdrawn", "is in danger", "is special"], correctIndex: 1, explanation: "Being 'in the red' means an account is overdrawn or in debt." },
+            { id: 46, question: "Complete the sentence: The strike action will be _______ tomorrow.", options: ["called at", "called off", "called on", "called up"], correctIndex: 1, explanation: "'Call off' means to cancel or abandon." },
+            { id: 47, question: "Complete the sentence: The sky soon _______ towards the evening.", options: ["cleared out", "cleared up", "closed down", "coloured up"], correctIndex: 1, explanation: "'Clear up' describes weather becoming bright and free of clouds." },
+            { id: 48, question: "Complete the sentence: The racing car was _______ by the officials.", options: ["flagged down", "filled out", "fed up", "closed down"], correctIndex: 0, explanation: "To 'flag down' a vehicle is to signal the driver to stop." },
+            { id: 49, question: "Complete the sentence: His plans to marry a blonde _______.", options: ["fell in with", "fell through", "fell out with", "fell far off"], correctIndex: 1, explanation: "'Fall through' means to fail to materialize." },
+            { id: 50, question: "Complete the sentence: The accountant _______ the books.", options: ["cooled down", "cooked up", "cleared out", "closed up"], correctIndex: 1, explanation: "To 'cook up' the books means to falsify financial accounts." },
+            { id: 51, question: "Choose the word that has the same consonant sound as the underlined letters in [th]ought:", options: ["taught", "theater", "weather", "fate"], correctIndex: 1, explanation: "The 'th' in thought /θ/ is voiceless, matching 'theater'." },
+            { id: 52, question: "Choose the word that has the same vowel sound as the underlined letters in k[ey]:", options: ["sit", "bet", "seat", "tread"], correctIndex: 2, explanation: "The 'ey' in key produces the long /i:/ sound, matching 'seat'." },
+            { id: 53, question: "Choose the word that has the same consonant sound as the underlined letters in [ch]urch:", options: ["feature", "chauffeur", "ocean", "machine"], correctIndex: 0, explanation: "The 'ch' in church /tʃ/ matches the 't' sound in 'feature'." },
+            { id: 54, question: "Choose the word that has the same consonant sound as the underlined letters in cou[gh]:", options: ["though", "thoroughly", "trophy", "of"], correctIndex: 2, explanation: "The 'gh' in cough is pronounced /f/, matching the 'ph' in 'trophy'." },
+            { id: 55, question: "Identify the word that has a different stress pattern from the others:", options: ["Interrupt", "Contribute", "Harmattan", "Entertain"], correctIndex: 1, explanation: "'Contribute' is stressed on the second syllable (con-TRI-bute)." },
+            { id: 56, question: "Identify the word that has the stress on the first syllable:", options: ["export (noun)", "commute", "intend", "import (verb)"], correctIndex: 0, explanation: "Disyllabic nouns like EX-port carry stress on the first syllable." },
+            { id: 57, question: "Identify the word that has the stress on the second syllable:", options: ["always", "result", "reproduce", "understand"], correctIndex: 1, explanation: "'Result' is stressed on the second syllable (re-SULT)." },
+            { id: 58, question: "'My house is a BUNGALOW.' Choose the question to which the given sentence relates:", options: ["Is my house a terrace?", "Was my house a bungalow?", "Is my house the bungalow?", "Is his house a bungalow?"], correctIndex: 0, explanation: "Emphatic stress on BUNGALOW contradicts another house type like 'terrace'." },
+            { id: 59, question: "'Taiwo SAILED to London?' Choose the question to which the given sentence relates:", options: ["Did Taiwo fly to London?", "Did Taiwo sail to Brazil?", "Did Taiwo sail to London?", "Where did Taiwo sail to?"], correctIndex: 0, explanation: "Emphatic stress on SAILED contradicts another mode of transport like 'fly'." },
+            { id: 60, question: "Choose the appropriate stress pattern for 'comfortable':", options: ["comFORtable", "COMfortable", "comfortaBLE", "comforTABLE"], correctIndex: 1, explanation: "'Comfortable' takes primary stress on the first syllable (COM-fortable)." }
+        ];
+
+        // --- 2. MATHEMATICS_QUESTIONS (40 QUESTIONS) ---
+        const MATHEMATICS_QUESTIONS = [
+            { id: 1, question: "If 321₄ is divided by 23₄ and leaves a remainder r, what is the value of r?", options: ["0", "1", "2", "3"], correctIndex: 2, explanation: "321₄ = 57₁₀, 23₄ = 11₁₀. 57 ÷ 11 = 5 remainder 2." },
+            { id: 2, question: "A trader in a country where their currency 'MONT' (M) is in base five bought 103₅ oranges at M14₅ each. If he sold the oranges at M24₅ each, what will be his gain?", options: ["M103₅", "M1030₅", "M102₅", "M2002₅", "M3032₅"], correctIndex: 1, explanation: "Gain per orange = M24₅ - M14₅ = M10₅. Total gain = M10₅ × 103₅ = M1030₅." },
+            { id: 3, question: "Evaluate: (212)₃ − (121)₃ + (222)₃.", options: ["(313)₃", "(1000)₃", "(1020)₃", "(1222)₃"], correctIndex: 2, explanation: "In base 10: 23 - 16 + 26 = 33₁₀ = 1020₃." },
+            { id: 4, question: "A man and wife went to buy an article costing ₦400. The woman had 10% of the cost and the man 40% of the remainder. How much did they have altogether?", options: ["₦216", "₦200", "₦184", "₦144", "₦100"], correctIndex: 2, explanation: "Woman = ₦40. Remainder = ₦360. Man = 40% of 360 = ₦144. Total = ₦184." },
+            { id: 5, question: "A sum of money invested at 5% per annum simple interest amounts to $285.20 after 3 years. How long will it take the same sum to amount to $434.00 at 7½% per annum simple interest?", options: ["7½ years", "10 years", "5 years", "12 years", "14 years"], correctIndex: 1, explanation: "P = 285.20 / 1.15 = 248. For 434: Interest = 186. 186 = 248 × 0.075 × t => t = 10 years." },
+            { id: 6, question: "By selling an article for ₦45.00, a man makes a profit of 8%. For how much should he have sold it in order to make a profit of 32%?", options: ["₦180.00", "₦59.00", "₦63.00", "₦58.00", "₦55.00"], correctIndex: 4, explanation: "New SP = 45 × (132 / 108) = ₦55.00." },
+            { id: 7, question: "Which of the following fractions is less than one-third?", options: ["22/63", "4/11", "15/46", "33/98", "122/383"], correctIndex: 2, explanation: "15/46 ≈ 0.326 < 0.333 (since 15 × 3 = 45 < 46)." },
+            { id: 8, question: "Evaluate correct to 4 decimal places: 827.51 × 0.015.", options: ["8.8415", "12.4127", "124.1265", "12.4120"], correctIndex: 1, explanation: "827.51 × 0.015 = 12.41265 ≈ 12.4127." },
+            { id: 9, question: "The difference between 4⁵⁄₇ and 2¼ is greater than the sum of 1/14 and 1½ by:", options: ["23/28", "24/48", "50/56", "27/28", "48/56"], correctIndex: 2, explanation: "Difference = 69/28. Sum = 44/28. 69/28 - 44/28 = 25/28 = 50/56." },
+            { id: 10, question: "If ₦560.70 is shared in the ratio 7:2:1, what is the smallest share?", options: ["₦392.49", "₦56.70", "₦113.40", "₦112.14", "₦56.07"], correctIndex: 4, explanation: "Smallest share = 1/10 of 560.70 = ₦56.07." },
+            { id: 11, question: "A man bought a wristwatch for ₦150 but was only able to sell it for ₦120. Find the loss per cent on the transaction.", options: ["25%", "11⅑%", "20%", "80%", "30%"], correctIndex: 2, explanation: "Loss % = (30 / 150) × 100 = 20%." },
+            { id: 12, question: "A construction company is owned by two partners X and Y, and it is agreed that their profit will be divided in the ratio 4:5. At the end of the year, Y received ₦5,000 more than X. What is the total profit of the company for the year?", options: ["₦20,000", "₦25,000", "₦30,000", "₦150,000", "₦45,000"], correctIndex: 4, explanation: "1 part = ₦5,000. Total = 9 parts = ₦45,000." },
+            { id: 13, question: "P sold his bicycle to Q at a profit of 10%. Q sold it to R for ₦209 at a loss of 5%. How much did the bicycle cost P?", options: ["₦200", "₦196", "₦180", "₦205", "₦150"], correctIndex: 0, explanation: "Cost = 209 / (1.10 × 0.95) = 209 / 1.045 = ₦200." },
+            { id: 14, question: "Arrange the following numbers in ascending order of magnitude: 6/7, 13/15, 0.865", options: ["6/7 < 0.865 < 13/15", "6/7 < 13/15 < 0.865", "13/15 < 6/7 < 0.865", "13/15 < 0.865 < 6/7", "0.865 < 6/7 < 13/15"], correctIndex: 0, explanation: "6/7 ≈ 0.8571, 0.865, 13/15 ≈ 0.8667." },
+            { id: 15, question: "A sum of money was invested at 8% per annum simple interest. If after 4 years the money amounts to ₦330.00, find the amount originally invested.", options: ["₦180.00", "₦165.00", "₦150.00", "₦200.00", "₦250.00"], correctIndex: 4, explanation: "P = 330 / 1.32 = ₦250.00." },
+            { id: 16, question: "Find correct to two decimal places: 100 + 1/100 + 3/1000 + 27/10000", options: ["100.02", "1000.02", "100.22", "100.01", "100.51"], correctIndex: 0, explanation: "100.0157 rounded to 2 d.p. is 100.02." },
+            { id: 17, question: "Divide the L.C.M. of 48, 64 and 80 by their H.C.F.", options: ["20", "30", "48", "60"], correctIndex: 3, explanation: "LCM = 960, HCF = 16. 960 ÷ 16 = 60." },
+            { id: 18, question: "Three boys shared some oranges. The first received 1/3 of the oranges, the second received 2/3 of the remainder, and the third boy received the remaining 12 oranges. How many oranges did they share?", options: ["60", "54", "48", "42"], correctIndex: 1, explanation: "2/9 of total = 12 => total = 54." },
+            { id: 19, question: "Udoh deposited ₦150.00 in the bank. At the end of 5 years, the simple interest on the principal was ₦55.00. At what rate per annum was the interest paid?", options: ["11%", "7⅓%", "5%", "3½%"], correctIndex: 1, explanation: "R = (55 × 100) / (150 × 5) = 7⅓%." },
+            { id: 20, question: "A number of pencils were shared out among Bisi, Sola and Tunde in the ratio 2:3:5 respectively. If Bisi got 5, how many were shared out?", options: ["15", "25", "30", "50"], correctIndex: 1, explanation: "Total = (10 / 2) × 5 = 25." },
+            { id: 21, question: "Convert 69₁₀ to a number in base two.", options: ["1001101", "1010001", "1000101", "100101"], correctIndex: 2, explanation: "69 = 64 + 4 + 1 = 1000101₂." },
+            { id: 22, question: "The number 110101₂ converted to base ten is equal to:", options: ["4", "23", "49", "53"], correctIndex: 3, explanation: "32 + 16 + 4 + 1 = 53." },
+            { id: 23, question: "The number 101.011₂ converted to base ten is equal to:", options: ["2.200", "3.125", "4.250", "5.375"], correctIndex: 3, explanation: "5 + 0.25 + 0.125 = 5.375." },
+            { id: 24, question: "The value of (111₂)², expressed in base two, is:", options: ["110001", "111111", "100011", "110011"], correctIndex: 0, explanation: "7² = 49₁₀ = 110001₂." },
+            { id: 25, question: "The number 83₁₀, converted to base seven, is:", options: ["641₇", "146₇", "61₇", "16₇"], correctIndex: 1, explanation: "83 = 1×49 + 4×7 + 6 = 146₇." },
+            { id: 26, question: "The number 635₈, converted to base five, is:", options: ["413₅", "3213₅", "3123₅", "4132₅"], correctIndex: 2, explanation: "635₈ = 413₁₀ = 3123₅." },
+            { id: 27, question: "Evaluate: 11010₂ − 11011₂ + 10011₂", options: ["1001₂", "11001₂", "11000₂", "10010₂"], correctIndex: 3, explanation: "26 - 27 + 19 = 18₁₀ = 10010₂." },
+            { id: 28, question: "If 101010₂ = x₁₀ + 1111₂, the value of x is:", options: ["32", "27", "19", "13"], correctIndex: 1, explanation: "42 = x + 15 => x = 27." },
+            { id: 29, question: "Solve for y in the following equation given in base two: 11(y + 101) = 1000y", options: ["10", "11", "110", "111"], correctIndex: 1, explanation: "3(y + 5) = 8y => y = 3₁₀ = 11₂." },
+            { id: 30, question: "Solve for x if (5x)₇ = 37₁₀.", options: ["2", "3", "4", "6"], correctIndex: 0, explanation: "35 + x = 37 => x = 2." },
+            { id: 31, question: "Which of the following fractions is less than one-quarter?", options: ["14/55", "3/11", "21/80", "17/70"], correctIndex: 3, explanation: "17/70 ≈ 0.2428 < 0.25." },
+            { id: 32, question: "Arrange the following numbers in ascending order of magnitude: 5/6, 11/13, 0.837", options: ["5/6, 0.837, 11/13", "5/6, 11/13, 0.837", "11/13, 0.837, 5/6", "0.837, 5/6, 11/13"], correctIndex: 0, explanation: "5/6 ≈ 0.8333 < 0.837 < 11/13 ≈ 0.846." },
+            { id: 33, question: "Simplify: 3½ ÷ 2⅓ − ¾", options: ["¾", "1½", "2 4/19", "5 1/12"], correctIndex: 0, explanation: "(7/2 × 3/7) - 3/4 = 3/2 - 3/4 = 3/4." },
+            { id: 34, question: "Simplify: 4⅓ − (2½ − 1⅗)", options: ["7/30", "2½", "3 1/10", "3 13/30"], correctIndex: 3, explanation: "13/3 - 9/10 = 103/30 = 3 13/30." },
+            { id: 35, question: "The number 327,036 was corrected to 327,000. Which of the following can exactly describe the degree of approximation used? I. To 3 s.f. II. To 4 s.f. III. To the nearest hundred IV. To the nearest thousand", options: ["I and III only", "II and IV only", "I, II and III only", "I, II, III and IV"], correctIndex: 3, explanation: "All four approximations of 327,036 yield 327,000." },
+            { id: 36, question: "The population of a school is 1,376. Express this to three significant figures.", options: ["1,370", "1,376", "1,380", "138"], correctIndex: 2, explanation: "1,376 to 3 s.f. rounds to 1,380." },
+            { id: 37, question: "The number 1.5714286, corrected to 5 decimal places, is:", options: ["1.57142", "1.57143", "1.57140", "1.57100"], correctIndex: 1, explanation: "1.5714286 to 5 d.p. is 1.57143." },
+            { id: 38, question: "The number 0.0047049, correct to three significant figures, is:", options: ["0.005", "0.0047", "0.00470", "0.004705"], correctIndex: 2, explanation: "0.0047049 to 3 s.f. is 0.00470." },
+            { id: 39, question: "The length of a wall which is 3.8 m long is measured as 4.0 m. The percentage error is:", options: ["5 5/19%", "6%", "2½%", "5%"], correctIndex: 0, explanation: "(0.2 / 3.8) × 100 = 100/19 = 5 5/19%." },
+            { id: 40, question: "A carpenter made a stool with a rectangular top of dimension 24 cm × 32 cm while the order stipulates a dimension of 25 cm × 30 cm. The percentage error in the area of the top is:", options: ["1.2", "2.3", "2.4", "4.8"], correctIndex: 2, explanation: "True = 750, Measured = 768. Error = 18/750 × 100 = 2.4%." }
+        ];
+
+        // --- 3. CHEMISTRY_QUESTIONS (40 QUESTIONS) ---
+        const CHEMISTRY_QUESTIONS = [
+            { id: 1, question: "A solid begins to melt at 81°C and completely turns to liquid at 86°C. This indicates that the solid is:", options: ["A pure element", "A pure compound", "An impure substance", "A polymer"], correctIndex: 2, explanation: "Impure substances melt over a temperature range." },
+            { id: 2, question: "Which of the following would support the conclusion that a solid sample is a mixture?", options: ["The solid can be ground to a fine powder", "The density of the solid is 2.2gdm⁻³", "The solid has a melting range of 300°C to 375°C", "The solid absorbs moisture from the atmosphere"], correctIndex: 2, explanation: "Mixtures melt over a wide temperature range." },
+            { id: 3, question: "The addition of an impurity to a pure liquid will cause its boiling point to:", options: ["Decrease", "Remain constant", "Increase", "Fluctuate"], correctIndex: 2, explanation: "Impurities elevate the boiling point of a liquid." },
+            { id: 4, question: "A substance that absorbs moisture from the atmosphere but does not form a solution is said to be:", options: ["Efflorescent", "Deliquescent", "Hygroscopic", "Anhydrous"], correctIndex: 2, explanation: "Hygroscopic substances absorb moisture without dissolving." },
+            { id: 5, question: "A substance that absorbs moisture from the atmosphere and dissolves to form a solution is called:", options: ["Deliquescent", "Efflorescent", "Hygroscopic", "Anhydrous"], correctIndex: 0, explanation: "Deliquescent substances absorb moisture and dissolve into a solution." },
+            { id: 6, question: "A hydrated salt that loses its water of crystallization when exposed to the atmosphere is said to be:", options: ["Deliquescent", "Efflorescent", "Hygroscopic", "Anhydrous"], correctIndex: 1, explanation: "Efflorescent salts lose water of crystallization on exposure to air." },
+            { id: 7, question: "The dissolution of common salt in water is a physical change because:", options: ["The salt can be obtained by crystallization", "The salt can be recovered by the evaporation of the water", "Heat is not generated during mixing", "The solution will not boil at 100°C"], correctIndex: 1, explanation: "The salt can be easily recovered by evaporating the water." },
+            { id: 8, question: "Which of the following is a physical change?", options: ["The bubbling of chlorine into a jar containing hydrogen", "The dissolution of sodium chloride in water", "The passing of steam over heated iron", "Rusting of iron"], correctIndex: 1, explanation: "Dissolving NaCl in water forms no new chemical substance." },
+            { id: 9, question: "Which of the following is considered a chemical change?", options: ["Gathering glass chips to remould a cup", "Dissolution of sodium chloride in water", "Rusting of iron", "Melting of ice"], correctIndex: 2, explanation: "Rusting forms a new chemical compound (hydrated iron(III) oxide)." },
+            { id: 10, question: "Which of the following is a compound?", options: ["Air", "Blood", "Sand (SiO₂)", "Brass"], correctIndex: 2, explanation: "Sand (SiO₂) is a compound; the others are mixtures." },
+            { id: 11, question: "Which of the following substances is a mixture?", options: ["Granulated sugar", "Sea-water", "Sodium chloride", "Iron filings"], correctIndex: 1, explanation: "Sea-water is a mixture of water and dissolved salts." },
+            { id: 12, question: "Alloys like brass and bronze are classified chemically as:", options: ["Compounds", "Elements", "Mixtures", "Colloids"], correctIndex: 2, explanation: "Alloys are homogeneous mixtures of metals." },
+            { id: 13, question: "Which of the following substances is NOT a homogeneous mixture?", options: ["Filtered sea water", "Soft drink", "Flood water", "Writing ink"], correctIndex: 2, explanation: "Flood water contains suspended particles, making it heterogeneous." },
+            { id: 14, question: "An example of a heterogeneous mixture is:", options: ["Filtered sea water", "Air", "Muddy water", "Brass"], correctIndex: 2, explanation: "Muddy water has non-uniform phases." },
+            { id: 15, question: "Harmattan haze and water paints are examples of:", options: ["True solutions", "Colloids", "Suspensions", "Elements"], correctIndex: 2, explanation: "They are suspensions whose particles settle on standing." },
+            { id: 16, question: "Milk, blood, and aerosol sprays are classified as:", options: ["Suspensions", "Colloids", "True solutions", "Pure liquids"], correctIndex: 1, explanation: "They are colloidal dispersions." },
+            { id: 17, question: "Mist is a colloidal system in which:", options: ["Liquid particles are dispersed in a gas", "Solid particles are dispersed in a liquid", "Gas is dispersed in a liquid", "Solid is dispersed in a gas"], correctIndex: 0, explanation: "Mist consists of liquid droplets dispersed in air (gas)." },
+            { id: 18, question: "An emulsion is a colloid in which the disperse phase is liquid and the dispersion medium is also a:", options: ["Solid", "Gas", "Liquid", "Plasma"], correctIndex: 2, explanation: "An emulsion is a liquid-in-liquid colloid." },
+            { id: 19, question: "The collisions of dust particles randomly in a beam of light lead to a zigzag movement known as:", options: ["Tyndall effect", "Capillarity", "Diffusion", "Brownian motion"], correctIndex: 3, explanation: "Random zigzag motion of particles is Brownian motion." },
+            { id: 20, question: "Separation of miscible liquids with close boiling points is best achieved by:", options: ["Simple distillation", "Fractional distillation", "Evaporation", "Decantation"], correctIndex: 1, explanation: "Fractional distillation separates miscible liquids with close boiling points." },
+            { id: 21, question: "Which of the following can be obtained by fractional distillation?", options: ["Nitrogen from liquid air", "Sodium chloride from sea water", "Iodine from a solution", "Sulphur from carbon disulphide"], correctIndex: 0, explanation: "Nitrogen and oxygen are separated from liquid air by fractional distillation." },
+            { id: 22, question: "Which separation technique is most suitable for separating the different color pigments in a black marker ink?", options: ["Centrifugation", "Chromatography", "Sublimation", "Magnetization"], correctIndex: 1, explanation: "Chromatography separates solutes/pigments based on differential migration." },
+            { id: 23, question: "The separation technique that depends on the difference in densities of two immiscible liquids is the use of a:", options: ["Liebig condenser", "Fractionating column", "Separating funnel", "Centrifuge"], correctIndex: 2, explanation: "A separating funnel separates immiscible liquids of different densities." },
+            { id: 24, question: "A separatory funnel is used for the separation of two liquids that are:", options: ["miscible and have different boiling points", "immiscible and have different densities", "miscible and have different densities", "immiscible and have different colours"], correctIndex: 1, explanation: "It requires immiscible liquids with different densities." },
+            { id: 25, question: "A mixture of ammonium chloride and sodium chloride can easily be separated by:", options: ["Sublimation", "Evaporation", "Decantation", "Filtration"], correctIndex: 0, explanation: "Ammonium chloride sublimes on heating while sodium chloride does not." },
+            { id: 26, question: "The process used in hospitals to separate fine solid particles like blood cells from plasma is:", options: ["Evaporation", "Distillation", "Centrifugation", "Decantation"], correctIndex: 2, explanation: "Centrifugation spins blood at high speed to separate cells from plasma." },
+            { id: 27, question: "Which of these separation techniques can be used to separate an insoluble solid from a liquid?", options: ["Sublimation", "Distillation", "Centrifugation", "Chromatography"], correctIndex: 2, explanation: "Centrifugation separates insoluble solids from liquids." },
+            { id: 28, question: "A liquid begins to boil when its constituent particles:", options: ["acquire energy which make them slide over one another", "acquire energy greater than their average kinetic energy", "acquire energy below the average kinetic energy", "acquire a greater kinetic energy"], correctIndex: 1, explanation: "Particles escape into the vapour phase when they acquire energy exceeding average kinetic energy." },
+            { id: 29, question: "Pure water can be made to boil below 100°C by:", options: ["increasing the volume", "decreasing the volume", "increasing the external pressure on it", "decreasing the external pressure on it"], correctIndex: 3, explanation: "Lowering external pressure lowers the boiling point." },
+            { id: 30, question: "Which of the following is considered a physical property?", options: ["Rusting", "Precipitation", "Neutralization", "Melting point"], correctIndex: 3, explanation: "Melting point is measured without changing chemical identity." },
+            { id: 31, question: "An example of a physical change is:", options: ["rusting of iron", "souring of milk", "burning of wood", "dissolution of a salt in water"], correctIndex: 3, explanation: "Dissolving salt in water is reversible by evaporation." },
+            { id: 32, question: "Which of the following general formulas represents alkanes?", options: ["CₙH₂ₙ", "CₙH₂ₙ₋₂", "CₙH₂ₙ₊₂", "CₙH₂ₙ₊₁OH"], correctIndex: 2, explanation: "Alkanes have the general formula CₙH₂ₙ₊₂." },
+            { id: 33, question: "A difference of what relative molecular mass separates consecutive members of a homologous series?", options: ["12", "13", "14", "16"], correctIndex: 2, explanation: "Consecutive members differ by a -CH₂- unit (12 + 2 = 14)." },
+            { id: 34, question: "Members of the same homologous series share all of the following EXCEPT:", options: ["General formula", "Similar chemical properties", "Same empirical formula", "Same molecular mass"], correctIndex: 3, explanation: "Members have different molecular masses increasing by 14." },
+            { id: 35, question: "As the relative molecular mass of a homologous series increases, which physical property typically increases?", options: ["Solubility in water", "Boiling point", "Chemical reactivity", "Reactivity with acids"], correctIndex: 1, explanation: "Boiling point increases with molecular mass due to stronger van der Waals forces." },
+            { id: 36, question: "The functional group determines a compound's:", options: ["Physical properties", "Chemical properties", "Molar mass", "Isotopic mass"], correctIndex: 1, explanation: "The functional group dictates chemical reactivity." },
+            { id: 37, question: "An alkyl group is formed by removing one hydrogen atom from an:", options: ["Alkene", "Alkyne", "Alkane", "Alkanol"], correctIndex: 2, explanation: "Removing one H atom from an alkane gives an alkyl group." },
+            { id: 38, question: "Alkanes are considered saturated hydrocarbons because:", options: ["They dissolve completely in water.", "They contain double bonds.", "They contain only single bonds between carbon atoms.", "They have high melting points."], correctIndex: 2, explanation: "Saturated hydrocarbons contain only C-C single covalent bonds." },
+            { id: 39, question: "Unsaturated organic compounds are identified by decolourization of:", options: ["silver bromide and potassium tetraoxomanganate(VII) solutions", "bromine water and alkaline potassium tetraoxomanganate(VII) solutions", "silver bromine solution and bromine water", "bromine water and acidified potassium tetraoxomanganate(VII) solution"], correctIndex: 3, explanation: "Unsaturated hydrocarbons decolorize bromine water and acidified KMnO₄." },
+            { id: 40, question: "An organic compound reacted with bromine water to give a colourless solution. The compound is probably an:", options: ["alkene", "alkanal", "alkane", "alkanone"], correctIndex: 0, explanation: "Alkenes undergo addition reactions with bromine water, decolorizing it." }
+        ];
+
+        // --- 4. PHYSICS_QUESTIONS (40 QUESTIONS) ---
+        const PHYSICS_QUESTIONS = [
+            { id: 1, question: "The internationally agreed system of units (SI) for physical measurement are", options: ["lb, ft, sec", "g, m, sec", "kg, m, sec", "cm, g, sec"], correctIndex: 2, explanation: "SI base units for mass, length, and time are kg, m, and s." },
+            { id: 2, question: "Which of the following is NOT a fundamental S.I. unit?", options: ["Metre", "Ampere", "Kelvin", "Radian"], correctIndex: 3, explanation: "Radian is a supplementary angle unit." },
+            { id: 3, question: "Which of the following units is equivalent to kgms⁻¹?", options: ["Ns⁻¹", "Nms", "Ns", "Js⁻¹"], correctIndex: 2, explanation: "Ns = (kgms⁻²) × s = kgms⁻¹." },
+            { id: 4, question: "Which of the following quantities has the same unit as the watt?", options: ["Force x time", "Force x distance", "Force x velocity", "Mass x velocity"], correctIndex: 2, explanation: "Power = Force × velocity." },
+            { id: 5, question: "Of the following derived units, the one that is not a unit of power is", options: ["Joule/second", "Ampere volt", "Ohm²/volt", "Volts²/ohm"], correctIndex: 2, explanation: "Ohm²/volt is not power." },
+            { id: 6, question: "Which of the following is a derived unit?", options: ["Kilogramme", "Metre", "Kelvin", "Newton"], correctIndex: 3, explanation: "Newton is a derived unit of force." },
+            { id: 7, question: "Which of the following is a fundamental unit?", options: ["Newton", "Watt", "Second", "Pascal"], correctIndex: 2, explanation: "Second is the fundamental unit of time." },
+            { id: 8, question: "The dimension of work and energy are", options: ["ML²T⁻³", "MLT⁻¹", "ML²T⁻²", "ML⁻³"], correctIndex: 2, explanation: "Work = Force × distance = MLT⁻² × L = ML²T⁻²." },
+            { id: 9, question: "The dimension of power are", options: ["ML²T⁻³", "ML²T⁻¹", "MLT⁻²", "MLT⁻³"], correctIndex: 0, explanation: "Power = Work / Time = ML²T⁻³." },
+            { id: 10, question: "Which of the following is the dimension of pressure?", options: ["ML⁻¹", "MLT⁻²", "ML²T⁻³", "ML⁻¹T⁻²"], correctIndex: 3, explanation: "Pressure = Force / Area = ML⁻¹T⁻²." },
+            { id: 11, question: "The values of x, y and z respectively in the expression MˣLʸTᶻ for the universal gravitational constant G are", options: ["2, -3, -2", "-1, 3, -2", "-1, 2, -3", "-2, -1, 3"], correctIndex: 1, explanation: "G = Fr²/m₁m₂ = M⁻¹L³T⁻²." },
+            { id: 12, question: "To determine the weight of an object you could", options: ["use a beam balance", "use a spring balance", "find the force for acceleration", "use none of these methods"], correctIndex: 1, explanation: "A spring balance measures weight." },
+            { id: 13, question: "One of the following readings represents the measurement of the length of a metal rod using vernier callipers.", options: ["5.16cm", "5.165cm", "5.0cm", "5cm"], correctIndex: 0, explanation: "Vernier callipers read to 0.01 cm (2 decimal places in cm)." },
+            { id: 14, question: "Which of the following represents the correct precision if the length of a piece of wire is measured with a metre rule?", options: ["35mm", "35.0mm", "35.00mm", "3.5cm"], correctIndex: 1, explanation: "A metre rule is accurate to 0.5 mm (1 decimal place in mm)." },
+            { id: 15, question: "What is the least possible error in using rule graduated in centimeters?", options: ["0.1cm", "0.5cm", "1.0cm", "0.01cm"], correctIndex: 0, explanation: "Smallest subdivision is 0.1 cm." },
+            { id: 16, question: "In order to remove the error of parallax when taking measurements with a metre rule, the eye should be focused", options: ["slantingly towards the left", "slantingly towards the right", "vertically downwards on the markings", "horizontally on the markings"], correctIndex: 2, explanation: "Viewing vertically downwards eliminates parallax error." },
+            { id: 17, question: "What is the least possible error encountered when taking measurement with a meter rule?", options: ["1.0mm", "0.5mm", "0.2mm", "0.1mm"], correctIndex: 0, explanation: "Smallest division on a metre rule is 1.0 mm." },
+            { id: 18, question: "An instrument whose accuracy is 0.05cm is the", options: ["metre rule", "vernier callipers", "micrometer screw gauge", "tape rule"], correctIndex: 1, explanation: "Vernier callipers measure with high precision in hundredths of a cm." },
+            { id: 19, question: "Which of the following physical quantities is NOT a vector?", options: ["Velocity", "Work", "Force", "Magnetic induction"], correctIndex: 1, explanation: "Work is a scalar quantity." },
+            { id: 20, question: "An example of a scalar quantity is", options: ["Velocity", "weight", "electric charge", "momentum"], correctIndex: 2, explanation: "Electric charge is a scalar quantity." },
+            { id: 21, question: "Which of the following is NOT a vector quantity", options: ["Force", "Altitude", "Weight", "Displacement"], correctIndex: 1, explanation: "Altitude is a scalar distance." },
+            { id: 22, question: "Which of the following is a set of vectors?", options: ["Force, mass and moment", "Acceleration, velocity and moment", "Mass, weight and density", "Mass, volume and density"], correctIndex: 1, explanation: "Acceleration, velocity, and moment are all vectors." },
+            { id: 23, question: "The pair of physical quantities that are scalar only are", options: ["volume and area", "moment and momentum", "length and displacement", "impulse and time"], correctIndex: 0, explanation: "Volume and area are both scalars." },
+            { id: 24, question: "A quantity which requires magnitude and direction to be specified", options: ["distance", "displacement", "mass", "temperature"], correctIndex: 1, explanation: "Displacement is a vector requiring magnitude and direction." },
+            { id: 25, question: "The resultant of two forces acting on an object is maximum if the angle between them is", options: ["45°", "0°", "90°", "180°"], correctIndex: 1, explanation: "Resultant is maximum when forces act in the same direction (0°)." },
+            { id: 26, question: "Two objects, one having three times the mass of the other, are dropped at the same time from a tall building. They will have the same", options: ["Momentum", "Kinetic energy", "Potential energy", "Acceleration"], correctIndex: 3, explanation: "Freely falling bodies experience the same gravitational acceleration g." },
+            { id: 27, question: "Which of the following statements is true of a body which is moving in a straight line with uniform acceleration?", options: ["The velocity of the body is also uniform", "Velocity is zero when the body stops accelerating", "Velocity will increase with time", "Velocity remains constant"], correctIndex: 2, explanation: "Uniform acceleration means velocity changes at a constant rate with time." },
+            { id: 28, question: "A train has an initial velocity of 44m/s and an acceleration of -4m/s². Its velocity after 10 seconds is", options: ["2m/s", "4m/s", "8m/s", "12m/s"], correctIndex: 1, explanation: "v = 44 + (-4)(10) = 4 m/s." },
+            { id: 29, question: "If a car starts from rest and moves with a uniform acceleration of 10ms⁻² for ten seconds, the distance it covers in the last one second is", options: ["95m", "100m", "500m", "90m"], correctIndex: 0, explanation: "s_10 - s_9 = ½(10)(100 - 81) = 95 m." },
+            { id: 30, question: "A ball is thrown vertically into the air with an initial velocity u. What is the greatest height reached?", options: ["u/2g", "3u²/2g", "u²/g", "u²/2g"], correctIndex: 3, explanation: "h = u² / (2g)." },
+            { id: 31, question: "The distance travelled by a particle starting from rest is plotted against the square of the time elapsed. The slope is a measure of", options: ["Initial displacement", "Initial velocity", "Acceleration", "Half the acceleration"], correctIndex: 3, explanation: "From s = ½at², the slope of s vs t² is ½a." },
+            { id: 32, question: "The derived dimension ML²T⁻² is a dimension of:", options: ["Acceleration", "Torque and Energy", "Force", "Momentum"], correctIndex: 1, explanation: "Both torque and energy have dimensions ML²T⁻²." },
+            { id: 33, question: "The unit of momentum is", options: ["Js⁻¹", "Ns", "Ns⁻¹", "Nms"], correctIndex: 1, explanation: "Impulse = change in momentum = Force × time (Ns)." },
+            { id: 34, question: "A body moves in a circular path of radius 20m. If its linear speed is 5m/s, its angular speed is:", options: ["0.25 rad/s", "100 rad/s", "4 rad/s", "0.5 rad/s"], correctIndex: 0, explanation: "ω = v / r = 5 / 20 = 0.25 rad/s." },
+            { id: 35, question: "A body revolves in a circle of radius 3m with an angular velocity of 5 rad/s. Its tangential velocity is:", options: ["1.67 m/s", "15 m/s", "8 m/s", "45 m/s"], correctIndex: 1, explanation: "v = ωr = 5 × 3 = 15 m/s." },
+            { id: 36, question: "The period of an oscillatory motion is the time taken to complete 75 oscillations in 60 seconds. The period is:", options: ["1.25 s", "0.80 s", "1.50 s", "1.00 s"], correctIndex: 1, explanation: "T = 60 / 75 = 0.80 s." },
+            { id: 37, question: "A student measures internal and external diameters as 100 ± 1 mm and 104 ± 1 mm. The possible error in thickness is: ", options: ["± 2 mm", "± 1 mm", "± 0.5 mm", "± 4 mm"], correctIndex: 1, explanation: "Thickness = (D - d)/2; error = (1 + 1)/2 = ± 1 mm." },
+            { id: 38, question: "Which of the following physical quantities is a scalar?", options: ["Momentum", "Kinetic Energy", "Magnetic Induction", "Displacement"], correctIndex: 1, explanation: "Kinetic energy is a scalar quantity." },
+            { id: 39, question: "What is the reading accuracy of a micrometer screw gauge?", options: ["0.1 cm", "0.01 cm", "0.001 cm", "1.0 cm"], correctIndex: 2, explanation: "0.01 mm = 0.001 cm." },
+            { id: 40, question: "If a car accelerates uniformly from rest at 2 m/s², how far will it travel in 5 seconds?", options: ["10 m", "25 m", "50 m", "5 m"], correctIndex: 1, explanation: "s = ½(2)(5²) = 25 m." }
+        ];
+
+        // --- 5. BIOLOGY_QUESTIONS (40 QUESTIONS) ---
+        const BIOLOGY_QUESTIONS = [
+            { id: 1, question: "Which of the following is characteristic of the animal cell?", options: ["Presence of chloroplasts", "Possession of a cellulose cell wall", "Absence of large vacuoles", "Presence of large vacuoles"], correctIndex: 2, explanation: "Animal cells lack large permanent central vacuoles." },
+            { id: 2, question: "All living organisms:", options: ["photosynthesize", "respire", "move", "feed"], correctIndex: 1, explanation: "All living organisms carry out cellular respiration." },
+            { id: 3, question: "The vacuole of a mature plant cell is:", options: ["a large empty space", "smaller than that of an animal cell", "filled with air", "surrounded by a membrane"], correctIndex: 3, explanation: "It is bounded by a membrane called the tonoplast." },
+            { id: 4, question: "The part of the cell solely responsible for respiration and energy production is the:", options: ["nucleus", "nucleolus", "mitochondria", "Golgi apparatus"], correctIndex: 2, explanation: "Mitochondria are the sites of aerobic respiration." },
+            { id: 5, question: "Which of the following cell constituents is NOT common to both plants and animals?", options: ["Mitochondria", "Chloroplasts", "Ribosomes", "Golgi apparatus"], correctIndex: 1, explanation: "Chloroplasts occur in plant cells, not animal cells." },
+            { id: 6, question: "A group of similar cells performing the same function is:", options: ["an organ", "a system", "a tissue", "an organelle"], correctIndex: 2, explanation: "A tissue is a group of similar cells performing a specific function." },
+            { id: 7, question: "The function of endoplasmic reticulum is:", options: ["protein synthesis", "intracellular transport of materials", "digestion of foreign bodies", "production of energy"], correctIndex: 1, explanation: "The ER transports materials within the cell." },
+            { id: 8, question: "The function of ribosomes in cells is:", options: ["protein synthesis", "starch synthesis", "transport of materials", "lipid storage"], correctIndex: 0, explanation: "Ribosomes are the sites of protein synthesis." },
+            { id: 9, question: "Which of the following structures is common to Euglena, white blood cell and Amoeba?", options: ["Vacuole", "Cell wall", "Cilia", "Cell membrane"], correctIndex: 3, explanation: "All three possess a cell membrane." },
+            { id: 10, question: "Which structure is known as the power house of the cell?", options: ["Nucleus", "Mitochondrion", "Vacuole", "Golgi body"], correctIndex: 1, explanation: "The mitochondrion generates ATP for the cell." },
+            { id: 11, question: "A tissue can best be defined as:", options: ["an aggregate of similar cells", "an aggregate of cells performing a similar function", "an aggregate of similar cells performing the same function", "a mixture of different cell types"], correctIndex: 2, explanation: "A tissue consists of structurally similar cells performing the same function." },
+            { id: 12, question: "The membrane surrounding the vacuole in a plant cell is called the:", options: ["plasmalemma", "tonoplast", "nuclear membrane", "endoplasmic reticulum"], correctIndex: 1, explanation: "The tonoplast bounds the central vacuole." },
+            { id: 13, question: "Which of the following organelles are likely to be present in cells that are actively respiring and photosynthesizing?", options: ["Nucleolus and centrioles", "Mitochondria and chloroplast", "Lysosomes and ribosomes", "Golgi apparatus and endoplasmic reticulum"], correctIndex: 1, explanation: "Mitochondria for respiration and chloroplasts for photosynthesis." },
+            { id: 14, question: "The nucleus is considered the control organelle of a cell because it:", options: ["contains the genetic material", "contains the nuclear sap", "is bounded by the nuclear membrane", "is located at the centre of the cell"], correctIndex: 0, explanation: "It houses DNA which directs cellular activities." },
+            { id: 15, question: "The structure that is most commonly identified in all living cells under the light microscope is the:", options: ["mitochondrion", "chloroplast", "nucleus", "ribosome"], correctIndex: 2, explanation: "The nucleus is the most prominent organelle under a light microscope." },
+            { id: 16, question: "Which of the following is biologically classified as an organ?", options: ["Guard cell", "Heart", "Xylem bundle", "Spermatozoon"], correctIndex: 1, explanation: "The heart is an organ made up of multiple tissues." },
+            { id: 17, question: "In plant cells, the chloroplasts are located:", options: ["inside the cell wall", "outside the protoplasm", "within the vacuole", "within the cytoplasm"], correctIndex: 3, explanation: "Chloroplasts are suspended in the cytoplasm." },
+            { id: 18, question: "Which of the following organisms does not exist as a single free living cell?", options: ["Paramecium", "Volvox", "Amoeba", "Chlamydomonas"], correctIndex: 1, explanation: "Volvox exists as a colonial organism." },
+            { id: 19, question: "An unlaid chicken egg is at what level of organization?", options: ["Tissue", "Organ", "Cell", "System"], correctIndex: 2, explanation: "An unlaid egg (ovum) is a single reproductive cell." },
+            { id: 20, question: "The structures found only in plant cells are:", options: ["cell membrane and cytoplasm", "chromatin and nucleolus", "cellulose cell wall and chloroplast", "cell membrane and lysosome"], correctIndex: 2, explanation: "Cellulose cell walls and chloroplasts are exclusive to plant cells." },
+            { id: 21, question: "The sum total of all the observable characteristics of a living thing is referred to as its:", options: ["Phenotype", "Genotype", "Morphology", "Anatomy"], correctIndex: 0, explanation: "Phenotype is the sum of observable traits." },
+            { id: 22, question: "An example of a prokaryotic organism is:", options: ["Amoeba", "Spirogyra", "Bacteria", "Yeast"], correctIndex: 2, explanation: "Bacteria are prokaryotes (Kingdom Monera)." },
+            { id: 23, question: "A cell that lacks a true nucleus and membrane-bound organelles is termed:", options: ["Eukaryotic", "Prokaryotic", "Unicellular", "Multicellular"], correctIndex: 1, explanation: "Prokaryotic cells lack a membrane-bound nucleus." },
+            { id: 24, question: "The ability of living organisms to detect and respond to changes in their environment is known as:", options: ["Adaptation", "Irritability", "Locomotion", "Homeostasis"], correctIndex: 1, explanation: "Irritability (sensitivity) is the response to stimuli." },
+            { id: 25, question: "Viruses are considered to be on the borderline between living and non-living things because they:", options: ["Can reproduce only inside living cells", "Have a crystalline structure", "Lack cellular organization", "All of the above"], correctIndex: 3, explanation: "Viruses can crystallize and lack cells, yet replicate inside living host cells." },
+            { id: 26, question: "In the five-kingdom classification system, simple eukaryotic algae are grouped under:", options: ["Monera", "Protista", "Fungi", "Plantae"], correctIndex: 1, explanation: "Simple unicellular/colonial eukaryotic algae belong to Protista." },
+            { id: 27, question: "An organism that feeds on dead and decaying organic matter is described as:", options: ["Parasitic", "Symbiotic", "Saprophytic", "Holozoic"], correctIndex: 2, explanation: "Saprophytes feed on dead and decaying organic matter." },
+            { id: 28, question: "Rhizopus is a common example of:", options: ["An alga", "A bacterium", "A fungus", "A protozoan"], correctIndex: 2, explanation: "Rhizopus (bread mould) is a fungus." },
+            { id: 29, question: "The locomotory organelle in Paramecium is the:", options: ["Pseudopodium", "Flagellum", "Cilium", "Myoneme"], correctIndex: 2, explanation: "Paramecium moves by means of cilia." },
+            { id: 30, question: "Which of the following organisms moves by means of pseudopodia?", options: ["Euglena", "Paramecium", "Amoeba", "Trypanosoma"], correctIndex: 2, explanation: "Amoeba moves using pseudopodia." },
+            { id: 31, question: "The cell wall of fungi is composed mainly of:", options: ["Cellulose", "Chitin", "Lignin", "Pectin"], correctIndex: 1, explanation: "Fungal cell walls contain chitin." },
+            { id: 32, question: "Which of the following plants produces naked seeds?", options: ["Maize", "Fern", "Moss", "Pine (Pinus)"], correctIndex: 3, explanation: "Pinus is a gymnosperm and produces naked seeds." },
+            { id: 33, question: "Plants that reproduce by spores and lack true roots, stems, and leaves are the:", options: ["Pteridophytes", "Bryophytes", "Gymnosperms", "Angiosperms"], correctIndex: 1, explanation: "Bryophytes (mosses and liverworts) are non-vascular and lack true roots, stems, and leaves." },
+            { id: 34, question: "Vascular tissues (xylem and phloem) are first observed in which group of plants?", options: ["Thallophyta", "Bryophyta", "Pteridophyta", "Spermatophyta"], correctIndex: 2, explanation: "Pteridophytes (ferns) are the simplest vascular plants." },
+            { id: 35, question: "Flowering plants that have their seeds enclosed in a fruit belong to the group:", options: ["Gymnosperms", "Angiosperms", "Bryophytes", "Thallophytes"], correctIndex: 1, explanation: "Angiosperms produce flowers and seeds enclosed in fruits." },
+            { id: 36, question: "Which of the following is a feature of a monocotyledonous plant?", options: ["Tap root system", "Net-veined leaves", "Floral parts in multiples of four or five", "Parallel leaf venation"], correctIndex: 3, explanation: "Monocots have parallel leaf venation and one seed leaf." },
+            { id: 37, question: "A plant that completes its life cycle in two growing seasons is called a:", options: ["Perennial", "Biennial", "Annual", "Ephemeral"], correctIndex: 1, explanation: "Biennials complete their life cycle in two growing seasons." },
+            { id: 38, question: "The scientist who developed the binomial system of nomenclature was:", options: ["Charles Darwin", "Gregor Mendel", "Carolus Linnaeus", "Louis Pasteur"], correctIndex: 2, explanation: "Carolus Linnaeus introduced binomial nomenclature." },
+            { id: 39, question: "The basic unit of classification of living organisms is the:", options: ["Kingdom", "Phylum", "Genus", "Species"], correctIndex: 3, explanation: "Species is the fundamental unit of classification." },
+            { id: 40, question: "In the binomial name Homo sapiens, the word Homo represents the:", options: ["Species", "Genus", "Family", "Order"], correctIndex: 1, explanation: "The first part of a binomial name is the Genus." }
+        ];
+
+        // --- SUBJECT CATALOG ---
+        const SUBJECT_CATALOG = {
+            english: {
+                key: "english",
+                name: "Use of English",
+                shortName: "English",
+                icon: "fa-book-open",
+                compulsory: true,
+                totalQuestions: 60,
+                singleDuration: 35,
+                description: "60 Questions • Compulsory",
+                questions: ENGLISH_QUESTIONS,
+                badgeClass: "bg-violet-500/20 text-violet-300 border-violet-500/40",
+                activeBorder: "border-violet-500 bg-violet-500/10",
+                iconActiveBg: "bg-violet-500 text-slate-950"
+            },
+            mathematics: {
+                key: "mathematics",
+                name: "Mathematics",
+                shortName: "Mathematics",
+                icon: "fa-calculator",
+                compulsory: false,
+                totalQuestions: 40,
+                singleDuration: 25,
+                description: "40 Questions • Elective",
+                questions: MATHEMATICS_QUESTIONS,
+                badgeClass: "bg-amber-500/20 text-amber-300 border-amber-500/40",
+                activeBorder: "border-amber-500 bg-amber-500/10",
+                iconActiveBg: "bg-amber-500 text-slate-950"
+            },
+            chemistry: {
+                key: "chemistry",
+                name: "Chemistry",
+                shortName: "Chemistry",
+                icon: "fa-flask",
+                compulsory: false,
+                totalQuestions: 40,
+                singleDuration: 25,
+                description: "40 Questions • Elective",
+                questions: CHEMISTRY_QUESTIONS,
+                badgeClass: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+                activeBorder: "border-emerald-500 bg-emerald-500/10",
+                iconActiveBg: "bg-emerald-500 text-slate-950"
+            },
+            physics: {
+                key: "physics",
+                name: "Physics",
+                shortName: "Physics",
+                icon: "fa-atom",
+                compulsory: false,
+                totalQuestions: 40,
+                singleDuration: 25,
+                description: "40 Questions • Elective",
+                questions: PHYSICS_QUESTIONS,
+                badgeClass: "bg-blue-500/20 text-blue-300 border-blue-500/40",
+                activeBorder: "border-blue-500 bg-blue-500/10",
+                iconActiveBg: "bg-blue-500 text-slate-950"
+            },
+            biology: {
+                key: "biology",
+                name: "Biology",
+                shortName: "Biology",
+                icon: "fa-microscope",
+                compulsory: false,
+                totalQuestions: 40,
+                singleDuration: 25,
+                description: "40 Questions • Elective",
+                questions: BIOLOGY_QUESTIONS,
+                badgeClass: "bg-purple-500/20 text-purple-300 border-purple-500/40",
+                activeBorder: "border-purple-500 bg-purple-500/10",
+                iconActiveBg: "bg-purple-500 text-slate-950"
+            }
+        };
+
+        const SUBJECT_KEYS = ["english", "mathematics", "chemistry", "physics", "biology"];
+
+        // --- APPLICATION STATE ---
+        let examMode = "full_mock"; // "full_mock" | "single_subject"
+        let hasCompletedGeneralMock = false;
+        let completedSingleSubjects = {};
+
+        let mockSelectedSubjects = ["english", "chemistry", "physics", "biology"];
+        let singleSelectedSubject = "english";
+
+        let activeExamSubjects = [];
+        let currentSubIdx = 0;
+        let currentQIdx = 0;
+        let examDurationSeconds = 120 * 60;
+        let examStartTimeMs = null;
+        let timerInterval = null;
+        let isQuizActive = false;
+        let candidateName = "";
+        let candidatePhone = "";
+
+        let reviewSubIdx = 0;
+        let reviewFilter = "all";
+
+        // --- PERSISTENCE HELPERS ---
+        function loadPortalProgress() {
+            try {
+                const raw = localStorage.getItem(STORAGE_PROGRESS_KEY);
+                if (raw) {
+                    const data = JSON.parse(raw);
+                    hasCompletedGeneralMock = !!data.hasCompletedGeneralMock;
+                    completedSingleSubjects = data.completedSingleSubjects || {};
+                    if (data.candidateName) {
+                        candidateName = data.candidateName;
+                        document.getElementById("candidateNameInput").value = candidateName;
+                    }
+                    if (data.candidatePhone) {
+                        candidatePhone = data.candidatePhone;
+                        document.getElementById("candidatePhoneInput").value = candidatePhone;
+                    }
+                }
+            } catch (e) {
+                console.warn("Could not read portal progress:", e);
+            }
+        }
+
+        function savePortalProgress() {
+            try {
+                localStorage.setItem(STORAGE_PROGRESS_KEY, JSON.stringify({
+                    hasCompletedGeneralMock,
+                    completedSingleSubjects,
+                    candidateName,
+                    candidatePhone
+                }));
+            } catch (e) {
+                console.warn("Could not save portal progress:", e);
+            }
+        }
+
+        function saveActiveExamSnapshot() {
+            if (!isQuizActive) return;
+            try {
+                localStorage.setItem(STORAGE_ACTIVE_EXAM_KEY, JSON.stringify({
+                    isQuizActive: true,
+                    examMode,
+                    candidateName,
+                    candidatePhone,
+                    examStartTimeMs,
+                    examDurationSeconds,
+                    activeExamSubjects
+                }));
+            } catch (e) {
+                console.warn("Could not save active exam snapshot:", e);
+            }
+        }
+
+        function clearActiveExamSnapshot() {
+            try {
+                localStorage.removeItem(STORAGE_ACTIVE_EXAM_KEY);
+            } catch (e) {
+                console.warn("Could not clear active exam snapshot:", e);
+            }
+        }
+
+        function getShuffledCopy(arr) {
+            const copy = [...arr];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function prepareSubjectQuestions(subjectKey) {
+            const cfg = SUBJECT_CATALOG[subjectKey];
+            if (subjectKey === "english") {
+                // Keep Q1-5 (Passage 1) and Q6-15 (Passage 2) strictly sequential
+                const passageQuestions = cfg.questions.slice(0, 15);
+                const otherQuestions = getShuffledCopy(cfg.questions.slice(15));
+                return [...passageQuestions, ...otherQuestions];
+            }
+            return getShuffledCopy(cfg.questions);
+        }
+
+        // --- RENDER START SCREEN ---
+        function renderStartScreen() {
+            const tabFullMockBtn = document.getElementById("tabFullMockBtn");
+            const tabSingleSubjectBtn = document.getElementById("tabSingleSubjectBtn");
+            const singleTabLockIcon = document.getElementById("singleTabLockIcon");
+            const singleTabBadge = document.getElementById("singleTabBadge");
+            const mockStatusIcon = document.getElementById("mockStatusIcon");
+            const mockStatusText = document.getElementById("mockStatusText");
+            const mockStatusBadge = document.getElementById("mockStatusBadge");
+
+            if (hasCompletedGeneralMock) {
+                singleTabLockIcon.className = "fa-solid fa-lock-open text-emerald-400";
+                singleTabBadge.textContent = "Unlocked";
+                singleTabBadge.className = "text-[10px] uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+                mockStatusIcon.className = "fa-solid fa-circle-check text-emerald-400";
+                mockStatusText.textContent = "Single Subjects Unlocked";
+                mockStatusBadge.className = "hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300 font-semibold";
+            } else {
+                singleTabLockIcon.className = "fa-solid fa-lock text-amber-400";
+                singleTabBadge.textContent = "Locked";
+                singleTabBadge.className = "text-[10px] uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30";
+                mockStatusIcon.className = "fa-solid fa-lock text-amber-400";
+                mockStatusText.textContent = "Single Subjects Locked";
+                mockStatusBadge.className = "hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-300 font-semibold";
+            }
+
+            const startBtn = document.getElementById("startQuizBtn");
+
+            if (examMode === "full_mock") {
+                tabFullMockBtn.className = "py-3 px-4 rounded-xl font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 bg-emerald-600 text-white shadow-lg transition";
+                tabSingleSubjectBtn.className = "py-3 px-4 rounded-xl font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800 transition";
+
+                document.getElementById("heroMainTitle").textContent = "Week 1 General Mock Examination";
+                document.getElementById("subjectSelectorHeading").textContent = "Select 3 Subjects to Join Use of English";
+
+                const count = mockSelectedSubjects.length;
+                const counterBadge = document.getElementById("selectionCounterBadge");
+                counterBadge.textContent = `${count} / 4 Selected`;
+                counterBadge.className = count === 4
+                    ? "text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                    : "text-xs font-extrabold px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30";
+
+                startBtn.disabled = false;
+                startBtn.className = "w-full py-3 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-900/40 flex items-center justify-center gap-2 transition";
+                startBtn.innerHTML = `<span>Start General Mock (180 Qs)</span><i class="fa-solid fa-arrow-right"></i>`;
+            } else {
+                const subCfg = SUBJECT_CATALOG[singleSelectedSubject];
+                tabSingleSubjectBtn.className = "py-3 px-4 rounded-xl font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 bg-violet-600 text-white shadow-lg transition";
+                tabFullMockBtn.className = "py-3 px-4 rounded-xl font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800 transition";
+
+                document.getElementById("heroMainTitle").textContent = `${subCfg.name} Practice (${subCfg.totalQuestions} Qs • ${subCfg.singleDuration} Mins)`;
+                document.getElementById("subjectSelectorHeading").textContent = "Select 1 Subject to Practice";
+
+                const counterBadge = document.getElementById("selectionCounterBadge");
+                counterBadge.textContent = `${subCfg.shortName} (${subCfg.singleDuration} Mins)`;
+                counterBadge.className = "text-xs font-extrabold px-3 py-1 rounded-full bg-violet-500/20 text-violet-300 border border-violet-500/30";
+
+                if (completedSingleSubjects[singleSelectedSubject]) {
+                    startBtn.disabled = true;
+                    startBtn.className = "w-full py-3 px-6 rounded-xl bg-slate-800 text-slate-400 font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 cursor-not-allowed";
+                    startBtn.innerHTML = `<span>${subCfg.shortName} Completed</span><i class="fa-solid fa-lock"></i>`;
+                } else {
+                    startBtn.disabled = false;
+                    startBtn.className = "w-full py-3 px-6 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-violet-900/40 flex items-center justify-center gap-2 transition";
+                    startBtn.innerHTML = `<span>Start ${subCfg.shortName} (${subCfg.totalQuestions} Qs)</span><i class="fa-solid fa-arrow-right"></i>`;
+                }
+            }
+
+            renderSubjectSelectionCards();
+        }
+
+        function renderSubjectSelectionCards() {
+            const container = document.getElementById("subjectCardsContainer");
+            container.innerHTML = "";
+
+            SUBJECT_KEYS.forEach(key => {
+                const cfg = SUBJECT_CATALOG[key];
+                const isSelected = examMode === "full_mock"
+                    ? mockSelectedSubjects.includes(key)
+                    : singleSelectedSubject === key;
+
+                const isSingleDone = examMode === "single_subject" && completedSingleSubjects[key];
+
+                const card = document.createElement("button");
+                card.type = "button";
+                card.className = `text-left p-4 rounded-2xl border-2 flex flex-col justify-between gap-2.5 transition cursor-pointer ${
+                    isSelected
+                        ? cfg.activeBorder
+                        : "border-slate-800 bg-slate-950/60 hover:bg-slate-800/60 opacity-75 hover:opacity-100"
+                }`;
+
+                let topTag = "";
+                if (examMode === "full_mock" && cfg.compulsory) {
+                    topTag = `<span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-violet-500/30 text-violet-200 border border-violet-400/40">Compulsory</span>`;
+                } else if (isSingleDone) {
+                    topTag = `<span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Done</span>`;
+                } else {
+                    topTag = `<span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${isSelected ? cfg.badgeClass : "bg-slate-800 text-slate-400 border border-slate-700"}">${cfg.totalQuestions} Qs</span>`;
+                }
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between gap-2 w-full">
+                        <div class="w-9 h-9 rounded-xl flex items-center justify-center text-sm font-bold transition ${isSelected ? cfg.iconActiveBg : "bg-slate-800 text-slate-400"}">
+                            <i class="fa-solid ${cfg.icon}"></i>
+                        </div>
+                        ${topTag}
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between gap-1">
+                            <span class="font-extrabold text-white text-sm sm:text-base">${cfg.shortName}</span>
+                            <i class="fa-solid ${isSelected ? "fa-circle-check text-emerald-400" : "fa-circle text-slate-700"} text-sm"></i>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-0.5">${cfg.description}</p>
+                    </div>
+                `;
+
+                card.addEventListener("click", () => {
+                    document.getElementById("subjectSelectionError").classList.add("hidden");
+                    if (examMode === "full_mock") {
+                        if (cfg.compulsory) return;
+                        if (mockSelectedSubjects.includes(key)) {
+                            mockSelectedSubjects = mockSelectedSubjects.filter(k => k !== key);
+                        } else {
+                            if (mockSelectedSubjects.length >= 4) {
+                                const errEl = document.getElementById("subjectSelectionError");
+                                document.getElementById("subjectSelectionErrorText").textContent = "4 subjects already selected. Deselect one to change.";
+                                errEl.classList.remove("hidden");
+                                return;
+                            }
+                            mockSelectedSubjects.push(key);
+                        }
+                        mockSelectedSubjects.sort((a, b) => SUBJECT_KEYS.indexOf(a) - SUBJECT_KEYS.indexOf(b));
+                    } else {
+                        singleSelectedSubject = key;
+                    }
+                    renderStartScreen();
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        // --- MODE TABS ---
+        document.getElementById("tabFullMockBtn").addEventListener("click", () => {
+            document.getElementById("lockedModeNotice").classList.add("hidden");
+            document.getElementById("subjectSelectionError").classList.add("hidden");
+            examMode = "full_mock";
+            renderStartScreen();
+        });
+
+        document.getElementById("tabSingleSubjectBtn").addEventListener("click", () => {
+            if (!hasCompletedGeneralMock) {
+                const notice = document.getElementById("lockedModeNotice");
+                notice.classList.remove("hidden");
+                notice.classList.add("flex");
+                return;
+            }
+            document.getElementById("lockedModeNotice").classList.add("hidden");
+            document.getElementById("subjectSelectionError").classList.add("hidden");
+            examMode = "single_subject";
+            renderStartScreen();
+        });
+
+        // --- LOGIN & START EXAM ---
+        document.getElementById("startQuizBtn").addEventListener("click", () => {
+            const nameVal = document.getElementById("candidateNameInput").value.trim();
+            const phoneVal = document.getElementById("candidatePhoneInput").value.trim();
+            const digitsOnly = phoneVal.replace(/\D/g, "");
+            const loginErrorMsg = document.getElementById("loginErrorMsg");
+            const loginErrorText = document.getElementById("loginErrorText");
+
+            if (nameVal.length < 2) {
+                loginErrorText.textContent = "Enter your WhatsApp username.";
+                loginErrorMsg.classList.remove("hidden");
+                document.getElementById("candidateNameInput").focus();
+                return;
+            }
+
+            if (digitsOnly.length < 10) {
+                loginErrorText.textContent = "Enter a valid WhatsApp phone number (e.g. 08012345678).";
+                loginErrorMsg.classList.remove("hidden");
+                document.getElementById("candidatePhoneInput").focus();
+                return;
+            }
+
+            loginErrorMsg.classList.add("hidden");
+
+            if (examMode === "full_mock" && mockSelectedSubjects.length !== 4) {
+                const errEl = document.getElementById("subjectSelectionError");
+                document.getElementById("subjectSelectionErrorText").textContent = "Select Use of English and 3 other subjects (4 total).";
+                errEl.classList.remove("hidden");
+                return;
+            }
+
+            candidateName = nameVal;
+            candidatePhone = phoneVal;
+            savePortalProgress();
+            launchExamSession();
+        });
+
+        function launchExamSession() {
+            const keysToLoad = examMode === "full_mock" ? [...mockSelectedSubjects] : [singleSelectedSubject];
+
+            activeExamSubjects = keysToLoad.map(key => {
+                const cfg = SUBJECT_CATALOG[key];
+                const qList = prepareSubjectQuestions(key);
+                return {
+                    key: cfg.key,
+                    name: cfg.name,
+                    shortName: cfg.shortName,
+                    icon: cfg.icon,
+                    questions: qList,
+                    userAnswers: new Array(qList.length).fill(null),
+                    bookmarked: new Array(qList.length).fill(false)
+                };
+            });
+
+            currentSubIdx = 0;
+            currentQIdx = 0;
+            examDurationSeconds = examMode === "full_mock"
+                ? 120 * 60
+                : SUBJECT_CATALOG[singleSelectedSubject].singleDuration * 60;
+
+            document.getElementById("startScreen").classList.add("hidden");
+            document.getElementById("resultScreen").classList.add("hidden");
+
+            const quizScreen = document.getElementById("quizScreen");
+            quizScreen.classList.remove("hidden");
+            quizScreen.classList.add("flex");
+
+            const timerContainer = document.getElementById("timerContainer");
+            timerContainer.classList.remove("hidden");
+            timerContainer.classList.add("flex");
+
+            const topCalcBtn = document.getElementById("topNavCalculatorBtn");
+            topCalcBtn.classList.remove("hidden");
+            topCalcBtn.classList.add("flex");
+
+            examStartTimeMs = Date.now();
+            isQuizActive = true;
+            saveActiveExamSnapshot();
+
+            updateTimerUI(examDurationSeconds);
+            startCountdownTimer();
+
+            renderQuizSubjectTabs();
+            buildQuestionPalette();
+            renderCurrentQuestion();
+        }
+
+        // --- TIMER ---
+        function updateTimerUI(remainingSeconds) {
+            const hrs = Math.floor(remainingSeconds / 3600);
+            const mins = Math.floor((remainingSeconds % 3600) / 60);
+            const secs = remainingSeconds % 60;
+            const timerDisplay = document.getElementById("timerDisplay");
+            if (hrs > 0) {
+                timerDisplay.textContent = `${String(hrs).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+            } else {
+                timerDisplay.textContent = `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+            }
+        }
+
+        function startCountdownTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - examStartTimeMs) / 1000);
+                const remaining = Math.max(0, examDurationSeconds - elapsed);
+                updateTimerUI(remaining);
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    finalizeExam("Time up — exam submitted automatically.");
+                }
+            }, 1000);
+        }
+
+        // --- MULTI-SUBJECT TABS & PALETTE ---
+        function renderQuizSubjectTabs() {
+            const tabsContainer = document.getElementById("quizSubjectTabs");
+            tabsContainer.innerHTML = "";
+
+            activeExamSubjects.forEach((sub, idx) => {
+                const answeredCount = sub.userAnswers.filter(a => a !== null).length;
+                const isActive = idx === currentSubIdx;
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = `px-3.5 py-2 rounded-xl font-extrabold text-xs sm:text-sm flex items-center gap-2 transition ${
+                    isActive
+                        ? "bg-emerald-600 text-white shadow-md"
+                        : "bg-slate-950 text-slate-300 hover:bg-slate-800 border border-slate-800"
+                }`;
+                btn.innerHTML = `
+                    <i class="fa-solid ${sub.icon}"></i>
+                    <span>${sub.shortName}</span>
+                    <span class="px-2 py-0.5 rounded-full text-[11px] ${isActive ? "bg-emerald-800 text-emerald-100" : "bg-slate-800 text-slate-400"}">
+                        ${answeredCount}/${sub.questions.length}
+                    </span>
+                `;
+                btn.addEventListener("click", () => {
+                    currentSubIdx = idx;
+                    currentQIdx = 0;
+                    renderQuizSubjectTabs();
+                    buildQuestionPalette();
+                    renderCurrentQuestion();
+                });
+                tabsContainer.appendChild(btn);
+            });
+        }
+
+        function buildQuestionPalette() {
+            const sub = activeExamSubjects[currentSubIdx];
+            const questionGrid = document.getElementById("questionGrid");
+            questionGrid.innerHTML = "";
+
+            document.getElementById("paletteSubjectTitle").textContent = `${sub.shortName} Questions`;
+            document.getElementById("candidateActiveDisplay").textContent = `${candidateName} • ${candidatePhone}`;
+
+            sub.questions.forEach((q, idx) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.textContent = idx + 1;
+                btn.className = "h-9 rounded-xl font-bold text-xs bg-slate-800 text-slate-300 border border-slate-700 transition";
+                btn.addEventListener("click", () => {
+                    currentQIdx = idx;
+                    renderCurrentQuestion();
+                });
+                questionGrid.appendChild(btn);
+            });
+        }
+
+        function updatePaletteAndProgress() {
+            const sub = activeExamSubjects[currentSubIdx];
+            const buttons = document.getElementById("questionGrid").children;
+            let subAnswered = 0;
+
+            sub.questions.forEach((q, idx) => {
+                if (sub.userAnswers[idx] !== null) subAnswered++;
+                const btn = buttons[idx];
+                if (!btn) return;
+                let cls = "h-9 rounded-xl font-bold text-xs transition flex items-center justify-center border ";
+                if (idx === currentQIdx) {
+                    cls += "ring-2 ring-white ring-offset-2 ring-offset-slate-900 ";
+                }
+                if (sub.bookmarked[idx]) {
+                    cls += "bg-amber-500 text-slate-950 border-amber-500";
+                } else if (sub.userAnswers[idx] !== null) {
+                    cls += "bg-emerald-600 text-white border-emerald-500";
+                } else {
+                    cls += "bg-slate-800 text-slate-300 border-slate-700";
+                }
+                btn.className = cls;
+            });
+
+            document.getElementById("subjectAnsweredBadge").textContent = `${subAnswered} / ${sub.questions.length}`;
+
+            let totalAns = 0;
+            let totalQs = 0;
+            activeExamSubjects.forEach(s => {
+                totalAns += s.userAnswers.filter(a => a !== null).length;
+                totalQs += s.questions.length;
+            });
+
+            document.getElementById("overallAnsweredPill").textContent = `${totalAns} / ${totalQs}`;
+            document.getElementById("progressBarFill").style.width = `${(totalAns / totalQs) * 100}%`;
+
+            renderQuizSubjectTabs();
+        }
+
+        // --- RENDER QUESTION ---
+        function selectOption(optIdx) {
+            if (!isQuizActive) return;
+            const sub = activeExamSubjects[currentSubIdx];
+            const q = sub.questions[currentQIdx];
+            if (!q || optIdx < 0 || optIdx >= q.options.length) return;
+
+            sub.userAnswers[currentQIdx] = optIdx;
+            saveActiveExamSnapshot();
+            renderCurrentQuestion();
+
+            if (document.getElementById("autoNextToggle").checked) {
+                const hasNextInSub = currentQIdx < sub.questions.length - 1;
+                const hasNextSub = currentSubIdx < activeExamSubjects.length - 1;
+                if (hasNextInSub || hasNextSub) {
+                    setTimeout(() => goToNextQuestion(), 250);
+                }
+            }
+        }
+
+        function renderCurrentQuestion() {
+            const sub = activeExamSubjects[currentSubIdx];
+            const q = sub.questions[currentQIdx];
+            if (!q) return;
+
+            document.getElementById("questionNumberBadge").textContent = `Question ${currentQIdx + 1} of ${sub.questions.length}`;
+            document.getElementById("activeSubjectPill").textContent = sub.name;
+
+            const isFlagged = sub.bookmarked[currentQIdx];
+            document.getElementById("flagIcon").className = isFlagged ? "fa-solid fa-bookmark text-amber-400" : "fa-regular fa-bookmark";
+            document.getElementById("flagText").textContent = isFlagged ? "Bookmarked" : "Bookmark";
+
+            const passageContainer = document.getElementById("passageContainer");
+            const passageBadgeTitle = document.getElementById("passageBadgeTitle");
+            const passageBodyText = document.getElementById("passageBodyText");
+
+            if (q.passage) {
+                passageContainer.classList.remove("hidden");
+                passageBadgeTitle.innerHTML = `<i class="fa-solid fa-book-open-reader"></i><span>${q.passageTitle || "PASSAGE"}</span>`;
+                passageBodyText.textContent = q.passage;
+            } else {
+                passageContainer.classList.add("hidden");
+                passageBodyText.textContent = "";
+            }
+
+            document.getElementById("questionText").textContent = `${currentQIdx + 1}. ${q.question}`;
+
+            const optionsContainer = document.getElementById("optionsContainer");
+            optionsContainer.innerHTML = "";
+            const OPTION_LETTERS = ["A", "B", "C", "D", "E"];
+
+            q.options.forEach((optText, idx) => {
+                const isSelected = sub.userAnswers[currentQIdx] === idx;
+                const optBtn = document.createElement("button");
+                optBtn.type = "button";
+                optBtn.className = `w-full text-left p-4 rounded-2xl border transition flex items-start gap-3.5 ${
+                    isSelected
+                        ? "bg-emerald-500/15 border-emerald-500 text-white"
+                        : "bg-slate-950/70 border-slate-800 text-slate-200 hover:bg-slate-800"
+                }`;
+                optBtn.innerHTML = `
+                    <span class="w-8 h-8 rounded-xl font-extrabold text-sm flex items-center justify-center shrink-0 ${
+                        isSelected ? "bg-emerald-500 text-slate-950" : "bg-slate-800 text-slate-300"
+                    }">${OPTION_LETTERS[idx]}</span>
+                    <span class="pt-0.5 flex-1">${optText}</span>
+                `;
+                optBtn.addEventListener("click", () => selectOption(idx));
+                optionsContainer.appendChild(optBtn);
+            });
+
+            const isFirstOfFirst = currentSubIdx === 0 && currentQIdx === 0;
+            const isLastOfLast = currentSubIdx === activeExamSubjects.length - 1 && currentQIdx === sub.questions.length - 1;
+
+            document.getElementById("prevQuestionBtn").disabled = isFirstOfFirst;
+            document.getElementById("nextQuestionBtn").disabled = isLastOfLast;
+
+            if (currentQIdx === sub.questions.length - 1 && currentSubIdx < activeExamSubjects.length - 1) {
+                const nextSubName = activeExamSubjects[currentSubIdx + 1].shortName;
+                document.getElementById("nextBtnLabel").textContent = `Next: ${nextSubName}`;
+            } else {
+                document.getElementById("nextBtnLabel").textContent = "Next";
+            }
+
+            updatePaletteAndProgress();
+        }
+
+        function goToNextQuestion() {
+            if (!isQuizActive) return;
+            const sub = activeExamSubjects[currentSubIdx];
+            if (currentQIdx < sub.questions.length - 1) {
+                currentQIdx++;
+                renderCurrentQuestion();
+            } else if (currentSubIdx < activeExamSubjects.length - 1) {
+                currentSubIdx++;
+                currentQIdx = 0;
+                buildQuestionPalette();
+                renderCurrentQuestion();
+            }
+        }
+
+        function goToPrevQuestion() {
+            if (!isQuizActive) return;
+            if (currentQIdx > 0) {
+                currentQIdx--;
+                renderCurrentQuestion();
+            } else if (currentSubIdx > 0) {
+                currentSubIdx--;
+                currentQIdx = activeExamSubjects[currentSubIdx].questions.length - 1;
+                buildQuestionPalette();
+                renderCurrentQuestion();
+            }
+        }
+
+        document.getElementById("nextQuestionBtn").addEventListener("click", goToNextQuestion);
+        document.getElementById("prevQuestionBtn").addEventListener("click", goToPrevQuestion);
+
+        document.getElementById("flagQuestionBtn").addEventListener("click", () => {
+            const sub = activeExamSubjects[currentSubIdx];
+            sub.bookmarked[currentQIdx] = !sub.bookmarked[currentQIdx];
+            saveActiveExamSnapshot();
+            renderCurrentQuestion();
+        });
+
+        // --- SUBMISSION MODAL ---
+        function openSubmitModal() {
+            const breakdownEl = document.getElementById("modalSubjectBreakdown");
+            breakdownEl.innerHTML = "";
+
+            activeExamSubjects.forEach(sub => {
+                const ans = sub.userAnswers.filter(a => a !== null).length;
+                const total = sub.questions.length;
+                const row = document.createElement("div");
+                row.className = "flex items-center justify-between py-1.5 border-b border-slate-800/80 last:border-none";
+                row.innerHTML = `
+                    <span class="font-bold text-slate-200 flex items-center gap-2">
+                        <i class="fa-solid ${sub.icon} text-emerald-400"></i>
+                        <span>${sub.name}</span>
+                    </span>
+                    <span class="font-extrabold ${ans === total ? "text-emerald-400" : "text-amber-400"}">${ans} / ${total}</span>
+                `;
+                breakdownEl.appendChild(row);
+            });
+
+            const modal = document.getElementById("submitModal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        document.getElementById("openSubmitModalBtn").addEventListener("click", openSubmitModal);
+        document.getElementById("paletteSubmitBtn").addEventListener("click", openSubmitModal);
+
+        document.getElementById("cancelSubmitBtn").addEventListener("click", () => {
+            const modal = document.getElementById("submitModal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        });
+
+        document.getElementById("confirmSubmitBtn").addEventListener("click", () => {
+            const modal = document.getElementById("submitModal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            finalizeExam(null);
+        });
+
+        // --- FINALIZE & GRADE EXAM ---
+        function finalizeExam(proctorReason = null) {
+            if (!isQuizActive && !proctorReason) return;
+            isQuizActive = false;
+            clearInterval(timerInterval);
+            clearActiveExamSnapshot();
+
+            const elapsedSeconds = Math.max(1, Math.floor((Date.now() - (examStartTimeMs || Date.now())) / 1000));
+
+            document.getElementById("calculatorModal").classList.add("hidden");
+            document.getElementById("submitModal").classList.add("hidden");
+            document.getElementById("submitModal").classList.remove("flex");
+
+            if (examMode === "full_mock") {
+                hasCompletedGeneralMock = true;
+            } else if (activeExamSubjects[0]) {
+                completedSingleSubjects[activeExamSubjects[0].key] = true;
+            }
+            savePortalProgress();
+
+            const quizScreen = document.getElementById("quizScreen");
+            quizScreen.classList.add("hidden");
+            quizScreen.classList.remove("flex");
+
+            const timerContainer = document.getElementById("timerContainer");
+            timerContainer.classList.add("hidden");
+            timerContainer.classList.remove("flex");
+
+            const topCalcBtn = document.getElementById("topNavCalculatorBtn");
+            topCalcBtn.classList.add("hidden");
+            topCalcBtn.classList.remove("flex");
+
+            document.getElementById("startScreen").classList.add("hidden");
+            document.getElementById("resultScreen").classList.remove("hidden");
+
+            const proctorBanner = document.getElementById("proctorSubmissionBanner");
+            if (proctorReason) {
+                document.getElementById("proctorSubmissionReasonText").textContent = proctorReason;
+                proctorBanner.classList.remove("hidden");
+                proctorBanner.classList.add("flex");
+            } else {
+                proctorBanner.classList.add("hidden");
+                proctorBanner.classList.remove("flex");
+            }
+
+            let totalRawScore = 0;
+            let totalMaxQuestions = 0;
+            let aggregateUTME = 0;
+
+            const breakdownGrid = document.getElementById("subjectBreakdownGrid");
+            breakdownGrid.innerHTML = "";
+
+            activeExamSubjects.forEach(sub => {
+                let subCorrect = 0;
+                sub.questions.forEach((q, idx) => {
+                    if (sub.userAnswers[idx] === q.correctIndex) subCorrect++;
+                });
+                const subTotal = sub.questions.length;
+                const subScaled100 = Math.round((subCorrect / subTotal) * 100);
+
+                sub.rawScore = subCorrect;
+                sub.scaledScore = subScaled100;
+
+                totalRawScore += subCorrect;
+                totalMaxQuestions += subTotal;
+                aggregateUTME += subScaled100;
+
+                const card = document.createElement("div");
+                card.className = "bg-slate-950/90 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between gap-2";
+                card.innerHTML = `
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="font-bold text-white text-sm flex items-center gap-2">
+                            <i class="fa-solid ${sub.icon} text-emerald-400"></i>
+                            <span>${sub.shortName}</span>
+                        </span>
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300">Raw: ${subCorrect}/${subTotal}</span>
+                    </div>
+                    <div class="flex items-baseline justify-between pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">${examMode === "full_mock" ? "UTME Score" : "Percentage"}</span>
+                        <span class="text-xl font-extrabold text-emerald-400">${subScaled100}<span class="text-xs text-slate-500">${examMode === "full_mock" ? "/100" : "%"}</span></span>
+                    </div>
+                `;
+                breakdownGrid.appendChild(card);
+            });
+
+            const overallPct = Math.round((totalRawScore / totalMaxQuestions) * 100);
+            document.getElementById("resultCandidateName").textContent = candidateName;
+            document.getElementById("resultCandidatePhone").textContent = candidatePhone;
+            document.getElementById("resultTimestamp").textContent = new Date().toLocaleString();
+
+            if (examMode === "full_mock") {
+                document.getElementById("resultModeBadgeText").textContent = "General UTME Mock Result";
+                document.getElementById("resultTitle").textContent = "SMA UTME 2027 — General Mock Result Slip";
+                document.getElementById("primaryScoreLabel").textContent = "UTME Aggregate";
+                document.getElementById("resultAggregateNum").textContent = aggregateUTME;
+                document.getElementById("resultAggregateMax").textContent = "/400";
+                document.getElementById("secondaryScoreLabel").textContent = "Raw Score";
+                document.getElementById("resultRawScoreNum").textContent = `${totalRawScore}/${totalMaxQuestions}`;
+                document.getElementById("resultPercentage").textContent = `(${overallPct}%)`;
+                document.getElementById("resultUnlockMessage").textContent = "Single Subject Practice is now unlocked.";
+            } else {
+                const sub = activeExamSubjects[0];
+                document.getElementById("resultModeBadgeText").textContent = "Single Subject Result";
+                document.getElementById("resultTitle").textContent = `SMA UTME 2027 — ${sub.name} Result`;
+                document.getElementById("primaryScoreLabel").textContent = "Raw Score";
+                document.getElementById("resultAggregateNum").textContent = sub.rawScore;
+                document.getElementById("resultAggregateMax").textContent = `/${sub.questions.length}`;
+                document.getElementById("secondaryScoreLabel").textContent = "Percentage";
+                document.getElementById("resultRawScoreNum").textContent = `${overallPct}%`;
+                document.getElementById("resultPercentage").textContent = `(${sub.rawScore} of ${sub.questions.length})`;
+                document.getElementById("resultUnlockMessage").textContent = "Check your corrections below or practice another subject.";
+            }
+
+            const remarkTitle = document.getElementById("remarkTitle");
+            const remarkSubtext = document.getElementById("remarkSubtext");
+            if (overallPct >= 75) {
+                remarkTitle.textContent = "Excellent Result";
+                remarkSubtext.textContent = "Strong mastery across your subjects.";
+            } else if (overallPct >= 60) {
+                remarkTitle.textContent = "Good Result";
+                remarkSubtext.textContent = "Review the missed questions below to improve further.";
+            } else if (overallPct >= 45) {
+                remarkTitle.textContent = "Average Result";
+                remarkSubtext.textContent = "Revise Week 1 notes and practice individual subjects.";
+            } else {
+                remarkTitle.textContent = "Below Average";
+                remarkSubtext.textContent = "Go through the corrections carefully and revise Week 1 topics.";
+            }
+
+            // Save score to Firebase Live Leaderboard
+            const leaderboardPayload = {
+                entryUid: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+                candidateName: candidateName || "Candidate",
+                maskedPhone: maskPhoneNumber(candidatePhone),
+                category: examMode === "full_mock" ? "full_mock" : activeExamSubjects[0].key,
+                score: examMode === "full_mock" ? aggregateUTME : activeExamSubjects[0].rawScore,
+                maxScore: examMode === "full_mock" ? 400 : activeExamSubjects[0].questions.length,
+                rawScore: totalRawScore,
+                rawTotal: totalMaxQuestions,
+                percentage: overallPct,
+                combination: activeExamSubjects.map(s => s.shortName).join(", "),
+                timeSpentSeconds: elapsedSeconds,
+                timestampMs: Date.now()
+            };
+            submitExamScoreToLeaderboard(leaderboardPayload);
+
+            reviewSubIdx = 0;
+            reviewFilter = "all";
+            renderReviewSubjectTabs();
+            renderScriptReview();
+        }
+
+        // --- STRICT ANTI-CHEAT (Tab Switch & Page Refresh Only — Calculator clicks safe) ---
+        document.addEventListener("visibilitychange", () => {
+            if (isQuizActive && document.visibilityState === "hidden") {
+                finalizeExam("Submitted automatically due to page refresh or tab switch.");
+            }
+        });
+
+        window.addEventListener("pagehide", () => {
+            if (isQuizActive) {
+                saveActiveExamSnapshot();
+            }
+        });
+
+        window.addEventListener("beforeunload", () => {
+            if (isQuizActive) {
+                saveActiveExamSnapshot();
+            }
+        });
+
+        // --- BUILT-IN CBT CALCULATOR ---
+        const calculatorModal = document.getElementById("calculatorModal");
+        const calcExpressionEl = document.getElementById("calcExpression");
+        const calcDisplayEl = document.getElementById("calcDisplay");
+        let calcExpr = "";
+        let calcCurrent = "0";
+        let calcJustEvaluated = false;
+
+        function toggleCalculator() {
+            calculatorModal.classList.toggle("hidden");
+        }
+
+        document.getElementById("openCalculatorBtn").addEventListener("click", toggleCalculator);
+        document.getElementById("topNavCalculatorBtn").addEventListener("click", toggleCalculator);
+        document.getElementById("closeCalculatorBtn").addEventListener("click", () => {
+            calculatorModal.classList.add("hidden");
+        });
+
+        function updateCalcScreen() {
+            calcExpressionEl.textContent = calcExpr;
+            calcDisplayEl.textContent = calcCurrent;
+        }
+
+        function safeEvalMath(exprString) {
+            try {
+                const sanitized = exprString.replace(/[^0-9+\-*/.()]/g, "");
+                if (!sanitized) return 0;
+                const result = Function(`"use strict"; return (${sanitized})`)();
+                if (!isFinite(result) || isNaN(result)) return "Error";
+                return Number(Math.round(Number(result + "e10")) + "e-10");
+            } catch (err) {
+                return "Error";
+            }
+        }
+
+        function handleCalcInput(val) {
+            if (calcCurrent === "Error") {
+                calcCurrent = "0";
+                calcExpr = "";
+            }
+
+            if (val === "C") {
+                calcCurrent = "0";
+                calcExpr = "";
+                calcJustEvaluated = false;
+            } else if (val === "DEL") {
+                if (calcJustEvaluated) {
+                    calcCurrent = "0";
+                    calcJustEvaluated = false;
+                } else if (calcCurrent.length > 1) {
+                    calcCurrent = calcCurrent.slice(0, -1);
+                } else {
+                    calcCurrent = "0";
+                }
+            } else if (val === "sqrt") {
+                const num = parseFloat(calcCurrent);
+                if (num < 0) {
+                    calcCurrent = "Error";
+                } else {
+                    calcExpr = `√(${calcCurrent})`;
+                    calcCurrent = String(Number(Math.sqrt(num).toPrecision(10)));
+                    calcJustEvaluated = true;
+                }
+            } else if (val === "sq") {
+                const num = parseFloat(calcCurrent);
+                calcExpr = `(${calcCurrent})²`;
+                calcCurrent = String(Number((num * num).toPrecision(10)));
+                calcJustEvaluated = true;
+            } else if (val === "inv") {
+                const num = parseFloat(calcCurrent);
+                if (num === 0) {
+                    calcCurrent = "Error";
+                } else {
+                    calcExpr = `1/(${calcCurrent})`;
+                    calcCurrent = String(Number((1 / num).toPrecision(10)));
+                    calcJustEvaluated = true;
+                }
+            } else if (val === "%") {
+                const num = parseFloat(calcCurrent);
+                calcCurrent = String(Number((num / 100).toPrecision(10)));
+                calcJustEvaluated = true;
+            } else if (val === "(" || val === ")") {
+                if (calcJustEvaluated) {
+                    calcExpr = val;
+                    calcCurrent = "0";
+                    calcJustEvaluated = false;
+                } else {
+                    if (calcCurrent !== "0") {
+                        calcExpr += calcCurrent + val;
+                        calcCurrent = "0";
+                    } else {
+                        calcExpr += val;
+                    }
+                }
+            } else if (["+", "-", "*", "/"].includes(val)) {
+                if (calcJustEvaluated) {
+                    calcExpr = calcCurrent + " " + val + " ";
+                    calcJustEvaluated = false;
+                } else {
+                    calcExpr += calcCurrent + " " + val + " ";
+                }
+                calcCurrent = "0";
+            } else if (val === "=") {
+                const fullExpr = calcExpr + (calcCurrent !== "0" || !calcExpr.endsWith(")") ? calcCurrent : "");
+                const res = safeEvalMath(fullExpr);
+                calcExpr = fullExpr + " =";
+                calcCurrent = String(res);
+                calcJustEvaluated = true;
+            } else if (val === ".") {
+                if (calcJustEvaluated) {
+                    calcCurrent = "0.";
+                    calcExpr = "";
+                    calcJustEvaluated = false;
+                } else if (!calcCurrent.includes(".")) {
+                    calcCurrent += ".";
+                }
+            } else if (/^[0-9]$/.test(val)) {
+                if (calcCurrent === "0" || calcJustEvaluated) {
+                    calcCurrent = val;
+                    if (calcJustEvaluated) calcExpr = "";
+                    calcJustEvaluated = false;
+                } else if (calcCurrent.length < 15) {
+                    calcCurrent += val;
+                }
+            }
+
+            updateCalcScreen();
+        }
+
+        document.querySelectorAll(".calc-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                handleCalcInput(btn.getAttribute("data-calc"));
+            });
+        });
+
+        // --- KEYBOARD SHORTCUTS (A-E, N/P, Left/Right, S to Submit) ---
+        document.addEventListener("keydown", (e) => {
+            if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+
+            if (!calculatorModal.classList.contains("hidden")) {
+                if (/^[0-9.]$/.test(e.key)) {
+                    e.preventDefault();
+                    handleCalcInput(e.key);
+                    return;
+                } else if (["+", "-", "*", "/", "%", "(", ")"].includes(e.key)) {
+                    e.preventDefault();
+                    handleCalcInput(e.key);
+                    return;
+                } else if (e.key === "Enter" || e.key === "=") {
+                    e.preventDefault();
+                    handleCalcInput("=");
+                    return;
+                } else if (e.key === "Backspace") {
+                    e.preventDefault();
+                    handleCalcInput("DEL");
+                    return;
+                } else if (e.key === "Escape") {
+                    e.preventDefault();
+                    calculatorModal.classList.add("hidden");
+                    return;
+                }
+            }
+
+            if (!isQuizActive) return;
+
+            const keyUpper = e.key.toUpperCase();
+            if (["A", "B", "C", "D", "E"].includes(keyUpper)) {
+                e.preventDefault();
+                const idx = keyUpper.charCodeAt(0) - 65;
+                selectOption(idx);
+            } else if (e.key === "ArrowRight" || keyUpper === "N") {
+                e.preventDefault();
+                goToNextQuestion();
+            } else if (e.key === "ArrowLeft" || keyUpper === "P") {
+                e.preventDefault();
+                goToPrevQuestion();
+            } else if (keyUpper === "S") {
+                e.preventDefault();
+                openSubmitModal();
+            }
+        });
+
+        // Draggable Calculator Header
+        (function makeCalculatorDraggable() {
+            const header = document.getElementById("calcDragHeader");
+            let isDragging = false;
+            let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
+
+            header.addEventListener("mousedown", (e) => {
+                if (e.target.closest("button")) return;
+                isDragging = true;
+                const rect = calculatorModal.getBoundingClientRect();
+                calculatorModal.style.bottom = "auto";
+                calculatorModal.style.right = "auto";
+                calculatorModal.style.left = `${rect.left}px`;
+                calculatorModal.style.top = `${rect.top}px`;
+                startX = e.clientX;
+                startY = e.clientY;
+                initialLeft = rect.left;
+                initialTop = rect.top;
+            });
+
+            document.addEventListener("mousemove", (e) => {
+                if (!isDragging) return;
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                const newLeft = Math.max(8, Math.min(window.innerWidth - calculatorModal.offsetWidth - 8, initialLeft + dx));
+                const newTop = Math.max(8, Math.min(window.innerHeight - calculatorModal.offsetHeight - 8, initialTop + dy));
+                calculatorModal.style.left = `${newLeft}px`;
+                calculatorModal.style.top = `${newTop}px`;
+            });
+
+            document.addEventListener("mouseup", () => {
+                isDragging = false;
+            });
+        })();
+
+        // --- SCRIPT REVIEW ---
+        function renderReviewSubjectTabs() {
+            const container = document.getElementById("reviewSubjectTabs");
+            container.innerHTML = "";
+
+            activeExamSubjects.forEach((sub, idx) => {
+                const isActive = idx === reviewSubIdx;
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = `px-4 py-2 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 transition ${
+                    isActive
+                        ? "bg-violet-600 text-white shadow-md"
+                        : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                }`;
+                btn.innerHTML = `
+                    <i class="fa-solid ${sub.icon}"></i>
+                    <span>${sub.name} (${sub.rawScore}/${sub.questions.length})</span>
+                `;
+                btn.addEventListener("click", () => {
+                    reviewSubIdx = idx;
+                    renderReviewSubjectTabs();
+                    renderScriptReview();
+                });
+                container.appendChild(btn);
+            });
+        }
+
+        function renderScriptReview() {
+            const sub = activeExamSubjects[reviewSubIdx];
+            const container = document.getElementById("scriptReviewContainer");
+            container.innerHTML = "";
+            const OPTION_LETTERS = ["A", "B", "C", "D", "E"];
+
+            let renderedCount = 0;
+            sub.questions.forEach((q, idx) => {
+                const userAns = sub.userAnswers[idx];
+                const isCorrect = userAns === q.correctIndex;
+                if (reviewFilter === "correct" && !isCorrect) return;
+                if (reviewFilter === "wrong" && isCorrect) return;
+
+                renderedCount++;
+                const card = document.createElement("div");
+                card.className = `rounded-2xl border p-5 ${isCorrect ? "bg-slate-950/60 border-emerald-500/30" : "bg-slate-950/60 border-rose-500/30"}`;
+
+                const userAnsText = userAns !== null ? `${OPTION_LETTERS[userAns]}. ${q.options[userAns]}` : "Not Answered";
+                const corrAnsText = `${OPTION_LETTERS[q.correctIndex]}. ${q.options[q.correctIndex]}`;
+
+                const passageBlock = q.passage ? `
+                    <div class="mb-3 p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 leading-relaxed whitespace-pre-line">
+                        <strong class="block text-violet-300 mb-1">${q.passageTitle || "PASSAGE"}</strong>
+                        ${q.passage}
+                    </div>
+                ` : "";
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-bold">${sub.shortName} • Q${idx + 1}</span>
+                        <span class="px-2.5 py-1 rounded-lg text-xs font-bold ${isCorrect ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30" : "bg-rose-500/15 text-rose-300 border border-rose-500/30"}">
+                            ${isCorrect ? "Correct" : "Missed"}
+                        </span>
+                    </div>
+                    ${passageBlock}
+                    <h4 class="text-white font-bold text-sm mb-3 whitespace-pre-line">${q.question}</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs mb-3">
+                        <div class="p-3 rounded-xl border ${isCorrect ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-200" : "bg-rose-500/10 border-rose-500/30 text-rose-200"}">
+                            <span class="block uppercase font-bold opacity-75 mb-1">Your Answer</span>
+                            <span class="font-semibold">${userAnsText}</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">
+                            <span class="block uppercase font-bold opacity-75 mb-1">Correct Answer</span>
+                            <span class="font-semibold">${corrAnsText}</span>
+                        </div>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300">
+                        <strong class="text-emerald-400">Explanation:</strong> ${q.explanation}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            if (renderedCount === 0) {
+                container.innerHTML = `<div class="p-8 text-center text-slate-400 text-sm bg-slate-950 rounded-2xl border border-slate-800">No questions match this filter.</div>`;
+            }
+        }
+
+        document.querySelectorAll(".review-filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".review-filter-btn").forEach(b => {
+                    b.className = "review-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
+                });
+                btn.className = "review-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white transition";
+                reviewFilter = btn.getAttribute("data-filter");
+                renderScriptReview();
+            });
+        });
+
+        // --- WHATSAPP SHARE & NAVIGATION ---
+        document.getElementById("copyResultBtn").addEventListener("click", () => {
+            const elapsedSeconds = Math.max(1, Math.floor((Date.now() - examStartTimeMs) / 1000));
+            const timeUsed = `${Math.floor(elapsedSeconds / 60)}m ${elapsedSeconds % 60}s`;
+            const agg = document.getElementById("resultAggregateNum").textContent;
+            const raw = document.getElementById("resultRawScoreNum").textContent;
+            const pct = document.getElementById("resultPercentage").textContent;
+
+            let breakdownLines = activeExamSubjects.map(s => `• ${s.shortName}: ${s.scaledScore}/100 (${s.rawScore}/${s.questions.length})`).join("\n");
+
+            const shareText = examMode === "full_mock"
+                ? `*SUCCESS MINERS ACADEMY (SMA)*\n*UTME 2027 Week 1 General Mock*\n\nCandidate: ${candidateName}\nWhatsApp: ${candidatePhone}\nAggregate Score: *${agg} / 400*\nRaw Score: ${raw} ${pct}\nTime Spent: ${timeUsed}\n\n*Subject Breakdown:*\n${breakdownLines}`
+                : `*SUCCESS MINERS ACADEMY (SMA)*\n*UTME 2027 Week 1 — ${activeExamSubjects[0].name}*\n\nCandidate: ${candidateName}\nWhatsApp: ${candidatePhone}\nScore: *${activeExamSubjects[0].rawScore} / ${activeExamSubjects[0].questions.length}* (${activeExamSubjects[0].scaledScore}%)\nTime Spent: ${timeUsed}`;
+
+            const textArea = document.createElement("textarea");
+            textArea.value = shareText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+
+            const copyTextSpan = document.getElementById("copyResultText");
+            copyTextSpan.textContent = "Result Copied!";
+            setTimeout(() => {
+                copyTextSpan.textContent = "Copy Result for WhatsApp";
+            }, 2500);
+        });
+
+        document.getElementById("proceedSinglePracticeBtn").addEventListener("click", () => {
+            examMode = "single_subject";
+            document.getElementById("resultScreen").classList.add("hidden");
+            document.getElementById("startScreen").classList.remove("hidden");
+            renderStartScreen();
+        });
+
+        document.getElementById("returnHomeBtn").addEventListener("click", () => {
+            document.getElementById("resultScreen").classList.add("hidden");
+            document.getElementById("startScreen").classList.remove("hidden");
+            renderStartScreen();
+        });
+
+        // --- INITIALIZE PORTAL & CHECK FOR REFRESH DURING ACTIVE EXAM ---
+        (function initPortal() {
+            initFirebaseConnections();
+            loadPortalProgress();
+
+            try {
+                const savedSessionRaw = localStorage.getItem(STORAGE_ACTIVE_EXAM_KEY);
+                if (savedSessionRaw) {
+                    const savedSession = JSON.parse(savedSessionRaw);
+                    if (savedSession && savedSession.isQuizActive && Array.isArray(savedSession.activeExamSubjects)) {
+                        examMode = savedSession.examMode || "full_mock";
+                        candidateName = savedSession.candidateName || "Candidate";
+                        candidatePhone = savedSession.candidatePhone || "N/A";
+                        examStartTimeMs = savedSession.examStartTimeMs || Date.now();
+                        examDurationSeconds = savedSession.examDurationSeconds || 7200;
+                        activeExamSubjects = savedSession.activeExamSubjects;
+                        isQuizActive = true;
+                        finalizeExam("Submitted automatically due to page refresh or tab switch.");
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.warn("Error checking saved exam session:", e);
+            }
+
+            renderStartScreen();
+        })();
+    </script>
+</body>
+</html>
